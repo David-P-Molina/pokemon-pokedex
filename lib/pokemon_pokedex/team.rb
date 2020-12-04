@@ -16,7 +16,9 @@ class Team
     def list_team#method that lists out the team
         p @@team.join(" ") #need to test and finalize? Should this go in cli class?
     end
-#method that clears the team
+    def self.clear#method that clears the team
+        @@team.clear
+    end
 #method that removes a pokemon
 #method that shows current pokemon team selected
 #
