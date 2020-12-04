@@ -6,7 +6,8 @@ class Pokemon
     attr_accessor :name, :type, :secondarytype, :evolution, :description
     attr_writer
     attr_reader
-    def initialize(name, type, secondarytype = nil, evolution = nil, description)
+    def initialize(name, description, type, secondarytype = nil, evolution = nil)
+        binding.pry
         @name = name
         @type = type
         @secondarytype = secondarytype
