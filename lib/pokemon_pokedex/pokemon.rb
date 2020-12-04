@@ -3,7 +3,6 @@ class Pokemon
     @@all = []
     #Methods to build
     # initialize
-    #alternate initialize
     def initialize(hash)
         hash.each do |key,value|
             self.class.attr_accessor key 
@@ -11,18 +10,7 @@ class Pokemon
         end
         save
     end
-    # attr_accessor :name, :type, :secondarytype, :evolution, :description
-    # attr_writer
-    # attr_reader
-    # def initialize(name, description, type, secondarytype = nil, evolution = nil)
-    #     binding.pry
-    #     @name = name
-    #     @type = type
-    #     @secondarytype = secondarytype
-    #     @evolution = evolution
-    #     @description = description
-    #     save
-    # end
+
     def self.all    # self.all
         @@all
     end
