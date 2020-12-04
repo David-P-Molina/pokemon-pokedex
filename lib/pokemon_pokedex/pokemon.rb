@@ -28,5 +28,11 @@ class Pokemon
     # find or create by name
     # findbynumber
     # findbytype
-    
 end
+=begin 
+:name, :type, :secondarytype, :evolution, :description
+Pokemon.new(Pikachu, electric, Raiachu, electric mouse)
+Pokemon.new(charmander, fire, charmeleon, fire lizard)
+Pokemon.new(Rattatta, normal, raticate, mouse)
+Pokemon.new(Sandshrew, ground, sandslash, shrew)
+=end
