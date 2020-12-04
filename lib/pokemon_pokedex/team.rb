@@ -3,7 +3,7 @@ class Team
     @@team = []
 #create an array with 6 spots
 #Stored in the array are user selected pokemon
-
+binding.pry
     def save#method that adds to an array
             @@team << self
     end

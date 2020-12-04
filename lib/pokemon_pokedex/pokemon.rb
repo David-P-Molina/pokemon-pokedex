@@ -14,9 +14,9 @@ class Pokemon
     def self.all    # self.all
         @@all
     end
-    def self.clear
+    def self.clear# self.clear is this needed?
        @@all.clear 
-    end# self.clear is this needed?
+    end
     def save# save
         @@all << self
     end
