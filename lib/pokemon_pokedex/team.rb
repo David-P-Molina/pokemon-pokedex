@@ -5,9 +5,12 @@ class Team
 #Stored in the array are user selected pokemon
 
     def save#method that adds to an array
-        while @@team.length < 6
             @@team << self
-        end
+    end
+    def team_size
+        if @@team.length >= 6
+            puts "It looks like you already have 6 pokemon!"
+        else save
     end
 #method that ensures there are only 6 spots filled
 #method that lists out the team
