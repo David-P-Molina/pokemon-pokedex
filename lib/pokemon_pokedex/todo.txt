@@ -1,0 +1,6 @@
+Add and use colorize gem
+source: https://github.com/fazibear/colorize/blob/master/README.md
+
+require 'colorize' - Extends String class
+require 'colorized_string'
+
