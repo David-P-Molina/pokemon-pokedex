@@ -1,6 +1,9 @@
 require "pry"
 class CLI
-    def user_greeting #Source https://ascii.co.uk/art/pokemon
+    def start
+        user_greeting
+    end
+    def poke_logo #Source https://ascii.co.uk/art/pokemon
          puts "                                    .::."
          puts "                                  .;:**'            
          puts "                         `                  "
@@ -15,7 +18,7 @@ class CLI
          puts "      'MMM.                                             IMX"
          puts "       ~M!M                                             IMP"
          puts ""
-         puts "Welcome to the Pokedex & TeamBuilder CLI app!"
     end
-        
+    def
+    puts "           Welcome to the Pokedex & Team Builder CLI app!"
 end
