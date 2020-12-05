@@ -1,10 +1,11 @@
 require "pry"
 class CLI
     def start
-        line
+        line_top
         logo
-        line
+        line_bottom
         user_greeting
+        line_a
     end
     def poke_logo #Source https://ascii.co.uk/art/pokemon
          puts "                                       .::."
@@ -19,8 +20,7 @@ class CLI
          puts "        ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM"
          puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
          puts "         'MMM.                                             IMX"
-         puts "          ~M!M             Original 151 Pokemon            IMP"
-
+         puts "          ~M!M         The Original 151 Pokemon            IMP"
     end
     def user_greeting
          puts "           Welcome to the Pokedex & Team Builder CLI app!"
@@ -28,7 +28,16 @@ class CLI
     def line
          puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
     end
-    #
+    def line_a
+         puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
+    end
+    def line_top
+         puts "╔═════════════════════════════════════════════════════════════════════╗"
+    end
+    def line_bottom
+         puts "╚═════════════════════════════════════════════════════════════════════╝"
+    end
+         #
     #What pokemon would you like to learn about
     #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
     #are you ready to start building your team?
