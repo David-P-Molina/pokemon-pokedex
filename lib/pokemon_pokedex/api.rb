@@ -7,6 +7,7 @@ class API
     def self.get_pokemon(URL)
         uri-URI.parse(URL)
         response = Net::HTTP.get_response(uri)
-        pokemon = JSON.parse
+        pokemon = JSON.parse(response.body)
+        #pokemon.each do |poke|
     end
 end
