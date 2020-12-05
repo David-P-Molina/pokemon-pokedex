@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "pokemon_pokedex"
+#require "pokemon_pokedex"
 require_relative "../lib/environment"
 
 CLI.new.start
