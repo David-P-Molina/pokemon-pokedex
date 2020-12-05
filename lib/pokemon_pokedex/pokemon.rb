@@ -18,7 +18,7 @@ class Pokemon
        @@all.clear 
     end
     def save# save
-        @@all << self
+        self.class.all << self
     end
     # self.create
     # findbyname
