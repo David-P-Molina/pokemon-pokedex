@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require "pry"
 #require api gems here
 

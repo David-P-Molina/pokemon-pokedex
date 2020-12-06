@@ -10,7 +10,6 @@ class Pokemon
         end
         save
     end
-    
     def self.all    # self.all
         @@all
     end
