@@ -10,7 +10,7 @@ class Pokemon
         end
         save
     end
-
+    
     def self.all    # self.all
         @@all
     end
@@ -21,7 +21,7 @@ class Pokemon
         self.class.all << self
     end
     # self.create
-    # findbyname
+    # find_by_name
     # find or create by name
     # findbynumber
     # findbytype

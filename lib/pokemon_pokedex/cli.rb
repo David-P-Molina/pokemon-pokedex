@@ -37,6 +37,7 @@ class CLI
     def line_bottom
          puts "╚═════════════════════════════════════════════════════════════════════╝"
     end
+
          #
     #What pokemon would you like to learn about
     #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
