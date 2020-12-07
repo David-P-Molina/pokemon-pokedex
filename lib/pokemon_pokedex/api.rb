@@ -15,9 +15,9 @@ class API
     end
     def self.get_pokemon_description
     end
-#    -https://pokeapi.co/api/v2/pokedex/2  GIVES US entry number name and URL[1 call]
+#    -https://pokeapi.co/api/v2/pokemon?limit=151                  GIVES US entry number name and URL[1 call]
 #        -URL(https://pokeapi.co/api/v2/pokemon-species/#{1-151}/) GIVES US description(flavor_text_entries) [requires 151calls]
-            #-continued) GIVES US id number, evolved from url(evolution-chain/1/
+            #-continued)                                           GIVES US id number, evolved from url(evolution-chain/1/
                 #-evolution-chain. GIVES US evolves to ,final evolution form
-#    -https://pokeapi.co/api/v2/pokemon/#{pokemon-#1-151}/ GIVES US types, names, weight, height, stats [requires 151calls]
+#    -https://pokeapi.co/api/v2/pokemon/#{pokemon-#1-151}/         GIVES US types, names, weight, height, stats [requires 151calls]
 end
