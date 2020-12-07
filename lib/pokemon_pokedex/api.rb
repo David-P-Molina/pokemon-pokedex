@@ -4,7 +4,7 @@ require "net/http"
 require "json"
 require "awesome_print"
 class API
-    URL = "https://pokeapi.co/api/v2/pokemon?limit=151" #the main information/ 
+    URL = "https://pokeapi.co/api/v2/pokemon?limit=5" #the main information/ 
     
     def get_pokemon
         uri = URI.parse(URL) #converts and parses out URL info
@@ -19,28 +19,16 @@ class API
     end
     def pokemon_roster
         pokemon_list = JSON.parse(self.get_pokemon)
-        pokemon_list.collect do |pokemon|
-            pokemon["name"]
-        end
+        binding.pry
+        pokemon_list['results'].each do |hash|
+            hash.each do |key, value|
+              puts "#{key}: #{value}"
+            end
+          end
     end
-
 end
 # names = API.new.get_pokemon
 # puts names
 pokedex = API.new
 puts pokedex.pokemon_roster
 
-
-
-
-
-
-
-
-
-
-#    -https://pokeapi.co/api/v2/pokemon?limit=151                  GIVES US entry number name and URL[1 call]
-#        -URL(https://pokeapi.co/api/v2/pokemon-species/#{1-151}/) GIVES US description(flavor_text_entries) [requires 151calls]
-            #-continued)                                           GIVES US id number, evolved from url(evolution-chain/1/
-                #-evolution-chain. GIVES US evolves to ,final evolution form
-#    -https://pokeapi.co/api/v2/pokemon/#{pokemon-#1-151}/         GIVES US types, names, weight, height, stats [requires 151calls]
