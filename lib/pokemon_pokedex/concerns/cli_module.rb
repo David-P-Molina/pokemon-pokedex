@@ -1,4 +1,4 @@
-module Aesthetics
+module Aesthetic
     def poke_logo #Source https://ascii.co.uk/art/pokemon
         puts "                                       .::."
         puts "                                     .;:**' "           

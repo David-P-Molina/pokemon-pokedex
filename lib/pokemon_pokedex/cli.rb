@@ -1,6 +1,6 @@
 require "pry"
 class CLI
-     include Aesthetics
+     #include Aesthetic
     def start
         line_top
         poke_logo
@@ -32,9 +32,9 @@ class CLI
     def ready_or_not
          puts "                 #{@@name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
-          if input == "yes"
+          if input == "yes" || input == "y"
                choice
-          elsif input == "no"
+          elsif input == "no" || input == "n"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
           else
@@ -46,9 +46,9 @@ class CLI
          puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
          puts "      Or are you ready to build a team?please type (pokemon or team)"
          path = gets.chomp.downcase
-         if path == "pokemon"#|| "poke mon" || "poke'mon" || "pokémon" || "poké mon" || "poké'mon" || "pokèmon"|| "pokè mon" || "pokè'mon" || "1"
+         if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
           pokedex_search
-         elsif path == "team"# || "pokemon team" || "pokemon team" || "2"
+         elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
           team_builder
           puts 
          elsif path == "or"
@@ -63,7 +63,7 @@ class CLI
          puts "               Alright, Lets learn about POKEMON"
     end
     def team_builder
-     puts "Lets pick your team!"
+         puts "                    Lets pick your team!"
     end
     def invalid_input
          puts "         You remind me of my grandson... I forget his name."
@@ -79,5 +79,29 @@ class CLI
     #are you ready to start building your team?
     #Are you sure you want to set your pokemon free?
     #exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
+    def poke_logo #Source https://ascii.co.uk/art/pokemon
+     puts "                                       .::."
+     puts "                                     .;:**' "           
+     puts "                            .                  "
+     puts "     .:XHHHHk.              db.   .;;.     dH  MX   "
+     puts "   oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN"
+     puts "  'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM"
+     puts "     `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP"
+     puts "      'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM"
+     puts "       ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP"
+     puts "        ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM"
+     puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
+     puts "         'MMM.                                             IMX"
+     puts "          ~M!M         The Original 151 Pokemon            IMP"
+end
+def line
+     puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
+end
+def line_top
+     puts "╔═════════════════════════════════════════════════════════════════════╗"
+ end
+ def line_bottom
+     puts "╚═════════════════════════════════════════════════════════════════════╝"
+ end
 end
 CLI.new.start
