@@ -4,7 +4,7 @@ require "net/http"
 require "json"
 require "awesome_print"
 class API
-    URL = "https://pokeapi.co/api/v2/pokemon?limit=5" #the main information/ 
+    URL = "https://pokeapi.co/api/v2/pokemon?limit=151" #the main information/ 
     
     def get_pokemon
         uri = URI.parse(URL) #converts and parses out URL info
@@ -19,16 +19,18 @@ class API
     end
     def pokemon_roster
         pokemon_list = JSON.parse(self.get_pokemon)
-        binding.pry
-        pokemon_list['results'].each do |hash|
+    #    binding.pry
+        pokemon_list['results'].collect do |hash| #hash is the first hash of a name and url
+      #      binding.pry
             hash.each do |key, value|
-              puts "#{key}: #{value}"
+              p  "#{key}: #{value}"
             end
-          end
+        end
     end
 end
 # names = API.new.get_pokemon
 # puts names
-pokedex = API.new
-puts pokedex.pokemon_roster
+ pokedex = API.new
+ pokedex.pokemon_roster
+
 
