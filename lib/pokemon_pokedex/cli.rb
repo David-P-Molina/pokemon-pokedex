@@ -6,11 +6,12 @@ class CLI
         line_bottom
         user_greeting
         line_a
+        user_name
     end
     def poke_logo #Source https://ascii.co.uk/art/pokemon
          puts "                                       .::."
          puts "                                     .;:**' "           
-         puts "                            `                  "
+         puts "                            .                  "
          puts "     .:XHHHHk.              db.   .;;.     dH  MX   "
          puts "   oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN"
          puts "  'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM"
@@ -23,15 +24,28 @@ class CLI
          puts "          ~M!M         The Original 151 Pokemon            IMP"
     end
     def user_greeting
-         puts "                            Hello there!"
-         puts "            Welcome to the Kanto Pokedex & Team Builder CLI app!"
-         puts "              My name is OAK! People call me the POKEMON PROF! "
-         puts "        This world is inhabited by creatures called POKEMON!!"
+         puts " "
+         puts "                             Hello there!"
+         puts "           Welcome to the Kanto Pokedex & Team Builder CLI app!"
+         puts "            My name is OAK! People call me the POKEMON PROF! "
+         puts "         This world is inhabited by creatures called POKEMON!!"
          puts " For some people POKEMON are pets. Others use them for fights. Here..."
          puts "                 Here we study POKEMON as a profession."
+         puts " "
     end
     def user_name
-     puts "First, what is your name?"
+         puts " "
+         puts "                      First, what is your name?"
+         @@name = gets.chomp.upcase
+         line_a
+         puts "                   Right! so your name is #{@@name}!"
+         puts "        #{@@name} Your very own POKEMON legend is about to unfold!"
+         puts "        A world of dreams and adventures with POKEMON awaits! Let's go!"
+         puts " Are you ready to begin"
+         gets.chomp.downcase
+         puts " Would you like to learn about a specific POKEMON or are you ready to build a team?"
+         puts " please type (pokemon or team)"
+         path = gets.chomp.upcase
     end
     def line
          puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
