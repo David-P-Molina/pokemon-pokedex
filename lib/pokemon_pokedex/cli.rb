@@ -5,7 +5,7 @@ class CLI
         poke_logo
         line_bottom
         user_greeting
-        line_a
+        line
         user_name
         ready_or_not
     end
@@ -38,7 +38,7 @@ class CLI
          puts " "
          puts "                      First, what is your name?"
          @@name = gets.chomp.upcase
-         line_a
+         line
          puts "                   Right! so your name is #{@@name}!"
          puts "        #{@@name} Your very own POKEMON legend is about to unfold!"
          puts "        A world of dreams and adventures with POKEMON awaits! Let's go!"
@@ -49,44 +49,42 @@ class CLI
           if input == "yes"
                choice
           elsif input == "no"
-               puts "We are sad to see you go!"
+               puts "               We are sad to see you go! Please come again soon!"
                exit 
           else
-               puts "     You remind me of my grandson... I forget his name. He was always fooling around too!"
                invalid_input
-             
+               ready_or_not
+          end
     end
      def choice
-         puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? Or are you ready to build a team?"
-         puts " please type (pokemon or team)"
+         puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
+         puts "      Or are you ready to build a team?please type (pokemon or team)"
          path = gets.chomp.downcase
-         if path == "pokemon"|| "poke mon" || "poke'mon" || "pokémon" || "poké mon" || "poké'mon" || "pokèmon"|| "pokè mon" || "pokè'mon" || "1"
+         if path == "pokemon"#|| "poke mon" || "poke'mon" || "pokémon" || "poké mon" || "poké'mon" || "pokèmon"|| "pokè mon" || "pokè'mon" || "1"
           pokedex_search
-         elsif path == "team" || "pokemon team" || "pokemon team" || "2"
+         elsif path == "team"# || "pokemon team" || "pokemon team" || "2"
           team_builder
           puts 
          elsif path == "or"
-          puts "I see you have a sense of humor. Lets try this again!"
+          puts "         I see you have a sense of humor. Lets try this again!"
           choice
          else
-          puts 
+          invalid_input
+          choice
          end
     end
     def pokedex_search
-     puts "Lets learn about POKEMON"
+         puts "               Alright, Lets learn about POKEMON"
     end
     def team_builder
      puts "Lets pick your team!"
     end
     def invalid_input
-     puts " "
-     puts "               That was not a valid input please try again!"  
+         puts "         You remind me of my grandson... I forget his name."
+         puts "     He was always fooling around too! Lets try one more time!"  
      line
     end
     def line
-         puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
-    end
-    def line_a
          puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
     end
     def line_top
@@ -96,8 +94,7 @@ class CLI
          puts "╚═════════════════════════════════════════════════════════════════════╝"
     end
     def menu
-     "Are you interested in learning about a specific pokemon?"
-     ""
+         puts "Please pick a number from 1-151 or if you are feeling lucky type random!"
     end
          #
     #What pokemon would you like to learn about
