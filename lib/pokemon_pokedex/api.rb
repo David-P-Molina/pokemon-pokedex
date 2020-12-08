@@ -32,7 +32,7 @@ class API
         description_list['flavor_text_entries'][0] #example"A strange seed was\nplanted on its\nback at birth.
                 #\fThe plant sprouts\nand grows with\nthis POKéMON." 
     end
-    #statistics
+    #stat
     def select_stats#types, name, height, weight, stats 
         binding.pry
         url = "https://pokeapi.co/api/v2/pokemon/4/"

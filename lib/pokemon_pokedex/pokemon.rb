@@ -3,21 +3,21 @@ class Pokemon
     @@all = []
     #Methods to build
     # initialize
-    def initialize(hash)
-        hash.each do |key, value|
-            self.class.attr_accessor key 
-            send("#{key}=", value)
-        end
+    attr_reader :name, :url, :number
+    def initialize(name, url, number)
+        @name = name
+        @url = url
+        @number = number
         save
+    end
+    def save# save
+        self.class.all << self
     end
     def self.all    # self.all
         @@all
     end
     def self.clear# self.clear is this needed?
-       @@all.clear 
-    end
-    def save# save
-        self.class.all << self
+        self.class.all.clear 
     end
     # self.create
     # find_by_name
