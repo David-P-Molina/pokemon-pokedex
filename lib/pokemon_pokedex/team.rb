@@ -1,6 +1,6 @@
 require "pry"
 class Team
-    @@team = []
+    @@team = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
 #create an array with 6 spots
 #Stored in the array are user selected pokemon
 binding.pry
@@ -11,9 +11,10 @@ binding.pry
         if @@team.length >= 6
             puts "It looks like you already have 6 pokemon!"
         else 
-            save
+            @@team << self
+        end
     end
-
+#add @@team method
     def list_team#method that lists out the team
         p @@team.join(" ") #need to test and finalize? Should this go in cli class?
     end
@@ -24,3 +25,4 @@ binding.pry
 #method that shows current pokemon team selected
 #
 end
+Team.new.list_team
