@@ -2,7 +2,7 @@ require "pry"
 class CLI
     def start
         line_top
-        logo
+        poke_logo
         line_bottom
         user_greeting
         line_a
@@ -23,7 +23,15 @@ class CLI
          puts "          ~M!M         The Original 151 Pokemon            IMP"
     end
     def user_greeting
-         puts "           Welcome to the Pokedex & Team Builder CLI app!"
+         puts "                            Hello there!"
+         puts "            Welcome to the Kanto Pokedex & Team Builder CLI app!"
+         puts "              My name is OAK! People call me the POKEMON PROF! "
+         puts "        This world is inhabited by creatures called POKEMON!!"
+         puts " For some people POKEMON are pets. Others use them for fights. Here..."
+         puts "                 Here we study POKEMON as a profession."
+    end
+    def user_name
+     puts "First, what is your name?"
     end
     def line
          puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
@@ -37,7 +45,10 @@ class CLI
     def line_bottom
          puts "╚═════════════════════════════════════════════════════════════════════╝"
     end
-
+    def menu
+     "Are you interested in learning about a specific pokemon?"
+     ""
+    end
          #
     #What pokemon would you like to learn about
     #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
@@ -45,3 +56,4 @@ class CLI
     #Are you sure you want to set your pokemon free?
     #exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
 end
+CLI.new.start

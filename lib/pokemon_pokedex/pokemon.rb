@@ -4,10 +4,10 @@ class Pokemon
     #Methods to build
     # initialize
     attr_reader :name, :url, :number
-    def initialize(name, url, number)
+    def initialize(name, url)
         @name = name
         @url = url
-        @number = number
+        @number = @@all.length + 1
         save
     end
     def save# save
@@ -24,11 +24,13 @@ class Pokemon
     # find or create by name
     # findbynumber
     # findbytype
+   # binding.pry
 end
 =begin 
 :name, :type, :secondarytype, :evolution, :description
-Pokemon.new(Pikachu, electric, Raiachu, electric mouse)
-Pokemon.new(charmander, fire, charmeleon, fire lizard)
 Pokemon.new(Rattatta, normal, raticate, mouse)
 Pokemon.new(Sandshrew, ground, sandslash, shrew)
 =end
+p Pokemon.new("charmander", "fire" )
+ p Pokemon.new("Pikachu", "electric")
+ Pokemon.all
