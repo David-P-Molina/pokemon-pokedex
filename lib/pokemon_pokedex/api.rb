@@ -13,10 +13,10 @@ class API
        # ap pokedex #uses the gem awesome_print to format the output into something pretty and readable
         #pokemon.each do |poke|
     end
-    def get_pokemon_awesome
-        get_pokemon
-        ap pokedex
-    end
+    # def get_pokemon_awesome
+    #     get_pokemon
+    #     ap pokedex
+    # end
     def pokemon_roster
         pokemon_list = JSON.parse(self.get_pokemon)
         list = pokemon_list['results'].collect do |hash| #hash is the first hash of a name and url
@@ -24,7 +24,13 @@ class API
             p  "#{key}: #{value}"
         end
     end
-    def user_select(i)
+    def user_select_stats(i)
+        input = "https://pokeapi.co/api/v2/pokemon/#{i}/"
+        uri = URI.parse(input) #converts and parses out URL info
+        response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
+        response.body
+    end
+    def user_select_description(i) 
         input = "https://pokeapi.co/api/v2/pokemon-species/#{i}/"
         uri = URI.parse(input) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
