@@ -10,7 +10,8 @@ binding.pry
     def team_size#method that ensures there are only 6 spots filled
         if @@team.length >= 6
             puts "It looks like you already have 6 pokemon!"
-        else save
+        else 
+            save
     end
 
     def list_team#method that lists out the team
