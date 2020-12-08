@@ -7,6 +7,7 @@ class CLI
         user_greeting
         line_a
         user_name
+        ready_or_not
     end
     def poke_logo #Source https://ascii.co.uk/art/pokemon
          puts "                                       .::."
@@ -41,11 +42,46 @@ class CLI
          puts "                   Right! so your name is #{@@name}!"
          puts "        #{@@name} Your very own POKEMON legend is about to unfold!"
          puts "        A world of dreams and adventures with POKEMON awaits! Let's go!"
-         puts " Are you ready to begin"
-         gets.chomp.downcase
-         puts " Would you like to learn about a specific POKEMON or are you ready to build a team?"
+    end
+    def ready_or_not
+         puts "                 #{@@name} Are you ready to begin? (yes or no)"
+          input = gets.chomp.downcase
+          if input == "yes"
+               choice
+          elsif input == "no"
+               puts "We are sad to see you go!"
+               exit 
+          else
+               puts "     You remind me of my grandson... I forget his name. He was always fooling around too!"
+               invalid_input
+             
+    end
+     def choice
+         puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? Or are you ready to build a team?"
          puts " please type (pokemon or team)"
-         path = gets.chomp.upcase
+         path = gets.chomp.downcase
+         if path == "pokemon"|| "poke mon" || "poke'mon" || "pokémon" || "poké mon" || "poké'mon" || "pokèmon"|| "pokè mon" || "pokè'mon" || "1"
+          pokedex_search
+         elsif path == "team" || "pokemon team" || "pokemon team" || "2"
+          team_builder
+          puts 
+         elsif path == "or"
+          puts "I see you have a sense of humor. Lets try this again!"
+          choice
+         else
+          puts 
+         end
+    end
+    def pokedex_search
+     puts "Lets learn about POKEMON"
+    end
+    def team_builder
+     puts "Lets pick your team!"
+    end
+    def invalid_input
+     puts " "
+     puts "               That was not a valid input please try again!"  
+     line
     end
     def line
          puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
