@@ -39,26 +39,18 @@ class API
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)
+        return {name: parse_response['species']['name']}
+        return {height: parse_response['height']}
         return {weight: parse_response['weight']}
+        return {type: parse_response['types'][0]['type']['name']}
+        return {hp: parse_response['stats'][0]['base_stat']}
+        return {attack: parse_response['stats'][1]['base_stat']}
+        return {defense: parse_response['stats'][2]['base_stat']}
+        return {spc_attack: parse_response['stats'][3]['base_stat']}
+        return {spc_defense: parse_response['stats'][4]['base_stat']}
+        return {speed: parse_response['stats'][5]['base_stat']}
     end
 
-    # def pokemon_stats
-    #     stat_list = JSON.parse(self.select_stats)
-    # end
-    # def height
-    #     stat_list = JSON.parse(self.select_stats)
-    #     #pokemon_stats
-    #     stat_list['weight']
-    # end
-    # def weight
-    #     stat_list = JSON.parse(self.select_stats)
-    #     #pokemon_stats
-    #     stat_list['weight']
-    # end
-    # def type
-    #     stat_list = JSON.parse(self.select_stats)
-    #     #pokemon_stats
-    #     stat_list['types'][0]['type']['name']
     # end
     # def name
     #     stat_list = JSON.parse(self.select_stats)
@@ -70,12 +62,12 @@ class API
     #     #pokemon_stats #do i need to split this up?
     #     # counter = 0
     #     # while counter < 6
-    #     p stat_list['stats'][0]['stat']['name'] + ":" + stat_list['stats'][0]['base_stat']#hp
-    #     p stat_list['stats'][1]['stat']['name'] + ":" + stat_list['stats'][1]['base_stat']#attack
-    #     p stat_list['stats'][2]['stat']['name'] + ":" + stat_list['stats'][2]['base_stat']#defense
-    #     p stat_list['stats'][3]['stat']['name'] + ":" + stat_list['stats'][3]['base_stat']#special-attack
-    #     p stat_list['stats'][4]['stat']['name'] + ":" + stat_list['stats'][4]['base_stat']#special-defense
-    #     p stat_list['stats'][5]['stat']['name'] + ":" + stat_list['stats'][5]['base_stat']#speed
+    #     + ":" + stat_list['stats'][0]['base_stat']#hp
+    #     + ":" + stat_list['stats'][1]['base_stat']#attack
+    #     + ":" + stat_list['stats'][2]['base_stat']#defense
+    #     + ":" + stat_list['stats'][3]['base_stat']#special-attack
+    #     + ":" + stat_list['stats'][4]['base_stat']#special-defense
+    #     + ":" + stat_list['stats'][5]['base_stat']#speed
     end
 
 
