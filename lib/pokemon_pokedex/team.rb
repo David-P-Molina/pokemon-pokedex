@@ -14,7 +14,7 @@ class Team
     def save#method that adds to an array
         self.class.team << self
     end
-    binding.pry
+    #binding.pry
     def self.team
         @@team
     end

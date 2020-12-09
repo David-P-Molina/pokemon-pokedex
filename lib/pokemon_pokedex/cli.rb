@@ -2,7 +2,7 @@ require "pry"
 class CLI
      #include Aesthetic ##module
      attr_reader :name
-    def start
+     def start
         #API.new.select_stats
         line_top
         poke_logo
@@ -19,8 +19,8 @@ class CLI
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts " For some people POKEMON are pets. Others use them for fights. Here..."
          puts "                 Here we study POKEMON as a profession."
-    end
-    def user_name
+     end
+     def user_name
          puts "                      First, what is your name?"
          @name = gets.chomp.upcase
          line
@@ -33,7 +33,7 @@ class CLI
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
           #     all_pokedex_list
-               pokedex_or_team  
+               pokemon_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
@@ -42,35 +42,64 @@ class CLI
                ready_or_not
           end
      end
-     def all_pokedex_list #create method in pokemon class that retrieves this info
-           Pokemon.get_pokemon_by_index do |name,number|
-               "#{number}. #{name}"
-           end
-           # puts "Would you like to see a shorter list" create option for shorter list
-           #  input = gets.chomp.downcase
-           # if input == "yes" || input == "y"
-           #      short_pokedex_list
-           # elsif input == "no" || input == "n"
-           #        pokedex_or_team
-           # else
-           #      invalid_input
-           #      all_pokedex_list
-     end
-     # def short_pokedex_list ##finish logic
-     #      @count ||= 1
-     #      pokemon[count..count+40].each_with_index do |number, name|
-     #           puts "#{number}. #{name}"
-     #            end
+
+     def pokedex_list
+          pokemons = API.pokemon_roster #array of pokemonobjects
+          pokemons.each do |pokemon|
+           puts pokemon.number.to_s + ". " + pokemon.name 
+          end
+          list_options
+      end
+      def list_options
+          puts "           To view a Pokemon type their Pokedex number"
+          puts "             To see a shorter list type short list"
+          input = gets.chomp.downcase
+          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"
+          #    short_pokedex_list ##Build this method
+               pokemon_list
+          elsif input.to_i == Integer && (1..151) === input.to_i
+               puts " Loading pokemon info and "
+          elsif input.to_i == Integer && input.to_i > 151
+               puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
+               list_options
+          elsif input == "exit" || input == "exit!"
+               puts "               We are sad to see you go! Please come again soon!"
+               exit 
+          else
+               invalid_input
+               list_options
+          end
+      end
+     # def all_pokedex_list #create method in pokemon class that retrieves this info
+     #       Pokemon.all do |name,number|
+     #           "#{number}. #{name}"
+     #       end
+     #      puts "Would you like to see a shorter list" 
+     #        input = gets.chomp.downcase
+     #       if input == "yes" || input == "y"
+     #            short_pokedex_list
+     #       elsif input == "no" || input == "n"
+     #              pokedex_or_team
+     #       else
+     #            invalid_input
+     #            all_pokedex_list
+     #      end
      # end
+     def short_pokedex_list ##finish logic
+          @count ||= 1
+          pokemon[count..count+40].each_with_index do |number, name|
+               puts "#{number}. #{name}"
+                end
+     end
      def pokedex_or_team
          puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
          puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
          path = gets.chomp.downcase
          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
-          pokedex_search
+          pokedex_list
          elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
           team_builder
-          puts "Lets "
+          puts "Lets start "
          elsif path == "or"
           puts "         I see you have a sense of humor. Lets try this again!"
           pokedex_or_team
@@ -81,18 +110,6 @@ class CLI
           pokedex_or_team
          end
     end
-    def pokedex_search
-         puts "               Alright, Lets learn about POKEMON"
-         pokedex_list#creates list
-    end
-    def pokedex_list
-          pokemons = API.pokemon_roster #array of pokemonobjects
-         # binding.pry
-         pokemons.each do |pokemon|
-       # binding.pry
-          puts pokemon.number.to_s + ". " + pokemon.name 
-      end
-     end
     def team_builder
          puts "                    Lets pick your team!"
     end
@@ -111,29 +128,29 @@ class CLI
     #Are you sure you want to set your pokemon free?
     #exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
     def poke_logo #Source https://ascii.co.uk/art/pokemon
-     puts "                                       .::."
-     puts "                                     .;:**' "           
-     puts "                            .                  "
-     puts "     .:XHHHHk.              db.   .;;.     dH  MX   "
-     puts "   oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN"
-     puts "  'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM"
-     puts "     `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP"
-     puts "      'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM"
-     puts "       ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP"
-     puts "        ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM"
-     puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
-     puts "         'MMM.                                             IMX"
-     puts "          ~M!M         The Original 151 Pokemon            IMP"
-end
-def line
-     puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
-end
-def line_top
-     puts "╔═════════════════════════════════════════════════════════════════════╗"
- end
- def line_bottom
-     puts "╚═════════════════════════════════════════════════════════════════════╝"
- end
+          puts "                                       .::."
+          puts "                                     .;:**' "           
+          puts "                            .                  "
+          puts "     .:XHHHHk.              db.   .;;.     dH  MX   "
+          puts "   oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN"
+          puts "  'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM"
+          puts "     `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP"
+          puts "      'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM"
+          puts "       ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP"
+          puts "        ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM"
+          puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
+          puts "         'MMM.                                             IMX"
+          puts "          ~M!M         The Original 151 Pokemon            IMP"
+     end
+     def line
+          puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
+     end
+     def line_top
+          puts "╔═════════════════════════════════════════════════════════════════════╗"
+     end
+     def line_bottom
+          puts "╚═════════════════════════════════════════════════════════════════════╝"
+     end
 end
 CLI.new.start
 ##tty for columns
