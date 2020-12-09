@@ -22,8 +22,8 @@ class API
     end
 
     #description
-    def select_description #description ##figure out how to add userinput
-        url = "https://pokeapi.co/api/v2/pokemon-species/1/" #use string interpolation
+    def select_description(i) #description ##figure out how to add userinput
+        url = "https://pokeapi.co/api/v2/pokemon-species/#{i}/" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         response.body
@@ -40,16 +40,16 @@ class API
         uri = URI.parse(poke_url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)
-        return {name: parse_response['species']['name']}
-        return {height: parse_response['height']}
-        return {weight: parse_response['weight']}
-        return {type: parse_response['types'][0]['type']['name']}
-        return {hp: parse_response['stats'][0]['base_stat']}
-        return {attack: parse_response['stats'][1]['base_stat']}
-        return {defense: parse_response['stats'][2]['base_stat']}
-        return {spc_attack: parse_response['stats'][3]['base_stat']}
-        return {spc_defense: parse_response['stats'][4]['base_stat']}
-        return {speed: parse_response['stats'][5]['base_stat']}
+        Pokemon.name = {name: parse_response['species']['name']}
+        Pokemon.height = {height: parse_response['height']}
+        Pokemon.weight = {weight: parse_response['weight']}
+        Pokemon.type = {type: parse_response['types'][0]['type']['name']}
+        Pokemon.hp = {hp: parse_response['stats'][0]['base_stat']}
+        Pokemon.attack = {attack: parse_response['stats'][1]['base_stat']}
+        Pokemon.defense = {defense: parse_response['stats'][2]['base_stat']}
+        Pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
+        Pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
+        Pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
     end
 
     # end
