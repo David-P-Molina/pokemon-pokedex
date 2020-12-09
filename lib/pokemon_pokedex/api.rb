@@ -40,7 +40,7 @@ class API
         uri = URI.parse(poke_url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)
-        Pokemon.name = {name: parse_response['species']['name']}
+        #Pokemon.name = {name: parse_response['species']['name']}
         Pokemon.height = {height: parse_response['height']}
         Pokemon.weight = {weight: parse_response['weight']}
         Pokemon.type = {type: parse_response['types'][0]['type']['name']}
@@ -50,6 +50,7 @@ class API
         Pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
         Pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
         Pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
+        #alternate option? Pokemon.speed = parse_response['stats'][5]['base_stat']
     end
 
     # end
