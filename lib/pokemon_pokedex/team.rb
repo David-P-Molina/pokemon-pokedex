@@ -32,6 +32,12 @@ class Team
     end
     def self.clear#method that clears the team
         self.class.clear
+        puts "       You can't journey into the world of Pokemon with 0 pokemon!"
+        puts "                     Lets fill that team up!"
+    end
+    def remove_last_pokemon_added
+        @@team.pop
+        list_team
     end
 #method that removes a pokemon
 #method that shows current pokemon team selected
