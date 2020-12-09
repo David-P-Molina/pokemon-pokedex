@@ -42,8 +42,7 @@ class CLI
           end
      end
      def all_pokedex_list #create method in pokemon class that retrieves this info
-          #lists pokemon by number and name
-           Pokemon.all.each do |name,number|
+           Pokemon.get_pokemon_by_index do |name,number|
                "#{number}. #{name}"
            end
            # puts "Would you like to see a shorter list" create option for shorter list
@@ -56,7 +55,7 @@ class CLI
            #      invalid_input
            #      all_pokedex_list
      end
-     # def short_pokedex_list
+     # def short_pokedex_list ##finish logic
      #      @count ||= 1
      #      pokemon[count..count+40].each_with_index do |number, name|
      #           puts "#{number}. #{name}"
@@ -70,15 +69,15 @@ class CLI
           pokedex_search
          elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
           team_builder
-          puts 
+          puts "Lets "
          elsif path == "or"
           puts "         I see you have a sense of humor. Lets try this again!"
-          choice
+          pokedex_or_team
          elsif path == "exit" || path == "exit!"
           exit
          else
           invalid_input
-          choice
+          pokedex_or_team
          end
     end
     def pokedex_search
