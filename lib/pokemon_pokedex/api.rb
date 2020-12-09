@@ -12,10 +12,13 @@ class API
         response.body
     end
     def pokemon_roster
+        binding.pry
         pokemon_list = JSON.parse(self.get_pokemon_list)
         pokemon_list['results'].collect do |hash|
             hash.each do |key, value|
-                "#{key}: #{value}"#Instantiate Pokemon objects from each pokemon hash
+            Pokemon.new(key, value)
+            #    "#{key}: #{value}"#Instantiate Pokemon objects from each pokemon hash
+            #returns {"name"=>"bulbasaur", "url"=>"https://pokeapi.co/api/v2/pokemon/1/"}, {"name"=>"ivysaur", "url"=>"https://pokeapi.co/api/v2/pokemon/2/"}
             end
         end
     end
@@ -69,9 +72,8 @@ class API
     #     + ":" + stat_list['stats'][4]['base_stat']#special-defense
     #     + ":" + stat_list['stats'][5]['base_stat']#speed
     end
+API.new.pokemon_roster
 
-
-end
 # names = API.new.get_pokemon
 # puts names
 #  pokedex = API.new

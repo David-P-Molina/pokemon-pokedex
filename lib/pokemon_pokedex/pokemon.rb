@@ -1,8 +1,6 @@
 require "pry"
 class Pokemon
     @@all = []
-    #Methods to build
-    # initialize
     attr_reader :name, :url, :number, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
     def initialize(name, url)
         @name = name
@@ -37,11 +35,3 @@ class Pokemon
     # findbytype
    # binding.pry
 end
-=begin 
-:name, :type, :secondarytype, :evolution, :description
-Pokemon.new(Rattatta, normal, raticate, mouse)
-Pokemon.new(Sandshrew, ground, sandslash, shrew)
-=end
-p Pokemon.new("charmander", "fire" )
- p Pokemon.new("Pikachu", "electric")
- Pokemon.all

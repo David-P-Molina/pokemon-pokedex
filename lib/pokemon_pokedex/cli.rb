@@ -31,7 +31,7 @@ class CLI
          puts "                 #{@@name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
-               all_pokedex_list
+          #     all_pokedex_list
                pokedex_or_team  
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
@@ -63,7 +63,7 @@ class CLI
      # end
      def pokedex_or_team
          puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
-         puts "      Or are you ready to build a team? please choose (pokemon, team, exit)"
+         puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
          path = gets.chomp.downcase
          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
           pokedex_search
