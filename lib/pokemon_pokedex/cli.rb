@@ -1,6 +1,7 @@
 require "pry"
 class CLI
      #include Aesthetic ##module
+     attr_reader :name
     def start
         #API.new.select_stats
         line_top
@@ -21,14 +22,14 @@ class CLI
     end
     def user_name
          puts "                      First, what is your name?"
-         @@name = gets.chomp.upcase
+         @name = gets.chomp.upcase
          line
-         puts "                   Right! so your name is #{@@name}!"
-         puts "        #{@@name} Your very own POKEMON legend is about to unfold!"
+         puts "                   Right! so your name is #{name}!"
+         puts "        #{name} Your very own POKEMON legend is about to unfold!"
          puts "        A world of dreams and adventures with POKEMON awaits! Let's go!"
     end
     def ready_or_not
-         puts "                 #{@@name} Are you ready to begin? (yes or no)"
+         puts "                 #{name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
           #     all_pokedex_list
@@ -62,7 +63,7 @@ class CLI
      #            end
      # end
      def pokedex_or_team
-         puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
+         puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
          puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
          path = gets.chomp.downcase
          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
@@ -82,8 +83,16 @@ class CLI
     end
     def pokedex_search
          puts "               Alright, Lets learn about POKEMON"
-         pokedex_list
+         pokedex_list#creates list
     end
+    def pokedex_list
+          pokemons = API.pokemon_roster #array of pokemonobjects
+         # binding.pry
+         pokemons.each do |pokemon|
+       # binding.pry
+          puts pokemon.number.to_s + ". " + pokemon.name 
+      end
+     end
     def team_builder
          puts "                    Lets pick your team!"
     end
@@ -127,3 +136,4 @@ def line_top
  end
 end
 CLI.new.start
+##tty for columns

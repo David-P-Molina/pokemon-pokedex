@@ -1,4 +1,8 @@
 class Table
+    #instantiate
+    def initialize
+        
+    end
     def display_team_member #accepts (number, name, type, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
         puts "╚═POKEDEX ##{number}| #{name}  "
         puts "╚═════════════════════════════╗"
@@ -16,7 +20,7 @@ class Table
     #     puts "╚═TYPE:#{type}   HP: #{hp}"
     #     puts "╚═════════════════════════════╗"
     # end
-    def pokedex_display#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
+    def pokedex_display_card#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
         puts "╚═POKEDEX ##{number}| #{name}  "
         puts "╚═TYPE:#{type}"
         puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"

@@ -1,7 +1,7 @@
 require "pry"
 class Pokemon
     @@all = []
-    attr_reader :name, :url, :number, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
+    attr_accessor :name, :url, :number, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
     def initialize(name, url)
         @name = name
         @url = url
@@ -19,6 +19,7 @@ class Pokemon
     end
     def self.create(name, url)
         pokemon = new(name, url)
+
         pokemon.number = @@all.length + 1
         pokemon.save
         pokemon
@@ -39,8 +40,8 @@ class Pokemon
         @spc_attack = spc_attack
         @spc_defense = spc_defense
         @speed = speed
-        or 
-        API.select_stats
+      #  or 
+      #  API.select_stats
     end
     def get_pokemon_description#Uses second parse method to retrieve pokemon stats## add description retrieval
         self.find_by_number

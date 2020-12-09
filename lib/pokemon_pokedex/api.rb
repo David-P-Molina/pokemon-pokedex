@@ -1,24 +1,21 @@
-require "pry"
-require "open-uri"
-require "net/http"
-require "json"
-require "awesome_print"
+#require_relative './pokemon'
 class API
     #list
-    def get_pokemon_list
+    def self.get_pokemon_list
         url = "https://pokeapi.co/api/v2/pokemon?limit=151" #the main information/ 
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         response.body
     end
-    def pokemon_roster
-        binding.pry
+    def self.pokemon_roster
+
         pokemon_list = JSON.parse(self.get_pokemon_list)
-        pokemon_list['results'].collect do |name, url|
-            Pokemon.new(name, url)
+        pokemon_list['results'].collect do |hash|
+            Pokemon.new(hash["name"], hash["url"])
             #    "#{key}: #{value}"#Instantiate Pokemon objects from each pokemon hash
             #returns {"name"=>"bulbasaur", "url"=>"https://pokeapi.co/api/v2/pokemon/1/"}, {"name"=>"ivysaur", "url"=>"https://pokeapi.co/api/v2/pokemon/2/"}
         end
+  
     end
 
     #description
@@ -71,7 +68,7 @@ class API
     #     + ":" + stat_list['stats'][4]['base_stat']#special-defense
     #     + ":" + stat_list['stats'][5]['base_stat']#speed
     end
-API.new.pokemon_roster
+
 
 # names = API.new.get_pokemon
 # puts names

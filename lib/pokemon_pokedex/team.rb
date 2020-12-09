@@ -27,7 +27,7 @@ class Team
             "You still have space for #{num} pokemon!Lets pick another one!"
         else
             puts "Presenting Your dreamteam!"
-        p "Current Team: " self.team.join(", ") #need to test and finalize? Should this go in cli class?
+       # p "Current Team: " self.team.join(", ") #need to test and finalize? Should this go in cli class?
         end
     end
     def self.clear#method that clears the team
