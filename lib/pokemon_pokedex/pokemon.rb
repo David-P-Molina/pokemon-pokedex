@@ -24,8 +24,10 @@ class Pokemon
         pokemon.save
         pokemon
     end
-    # find_by_name
-    # find or create by name
+    def self.find_by_number(number)
+        all.detect{|poke| poke.number == number}
+    end
+    # find or create by name ##is this needed
     def get_pokemon#Uses second parse method to retrieve pokemon stats## add description retrieval
     end
     def get_pokemon_list
