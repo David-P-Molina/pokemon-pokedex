@@ -15,7 +15,7 @@ class API
         pokemon_list = JSON.parse(self.get_pokemon_list)
         pokemon_list['results'].collect do |hash|
             hash.each do |key, value|
-                "#{key}: #{value}"
+                "#{key}: #{value}"#Instantiate Pokemon objects from each pokemon hash
             end
         end
     end
@@ -38,43 +38,44 @@ class API
         url = "https://pokeapi.co/api/v2/pokemon/4/"
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
-        response.body
+        parse_response = JSON.parse(response.body)
+        return {weight: parse_response['weight']}
     end
 
     # def pokemon_stats
     #     stat_list = JSON.parse(self.select_stats)
     # end
-    def height
-        stat_list = JSON.parse(self.select_stats)
-        #pokemon_stats
-        stat_list['weight']
-    end
-    def weight
-        stat_list = JSON.parse(self.select_stats)
-        #pokemon_stats
-        stat_list['weight']
-    end
-    def type
-        stat_list = JSON.parse(self.select_stats)
-        #pokemon_stats
-        stat_list['types'][0]['type']['name']
-    end
-    def name
-        stat_list = JSON.parse(self.select_stats)
-        #pokemon_stats
-        stat_list['species']['name']
-    end
-    def stats
-        stat_list = JSON.parse(self.select_stats)
-        #pokemon_stats #do i need to split this up?
-        # counter = 0
-        # while counter < 6
-        p stat_list['stats'][0]['stat']['name'] ":" stat_list['stats'][0]['base_stat']#hp
-        p stat_list['stats'][1]['stat']['name'] ":" stat_list['stats'][1]['base_stat']#attack
-        p stat_list['stats'][2]['stat']['name'] ":" stat_list['stats'][2]['base_stat']#defense
-        p stat_list['stats'][3]['stat']['name'] ":" stat_list['stats'][3]['base_stat']#special-attack
-        p stat_list['stats'][4]['stat']['name'] ":" stat_list['stats'][4]['base_stat']#special-defense
-        p stat_list['stats'][5]['stat']['name'] ":" stat_list['stats'][5]['base_stat']#speed
+    # def height
+    #     stat_list = JSON.parse(self.select_stats)
+    #     #pokemon_stats
+    #     stat_list['weight']
+    # end
+    # def weight
+    #     stat_list = JSON.parse(self.select_stats)
+    #     #pokemon_stats
+    #     stat_list['weight']
+    # end
+    # def type
+    #     stat_list = JSON.parse(self.select_stats)
+    #     #pokemon_stats
+    #     stat_list['types'][0]['type']['name']
+    # end
+    # def name
+    #     stat_list = JSON.parse(self.select_stats)
+    #     #pokemon_stats
+    #     stat_list['species']['name']
+    # end
+    # def stats
+    #     stat_list = JSON.parse(self.select_stats)
+    #     #pokemon_stats #do i need to split this up?
+    #     # counter = 0
+    #     # while counter < 6
+    #     p stat_list['stats'][0]['stat']['name'] + ":" + stat_list['stats'][0]['base_stat']#hp
+    #     p stat_list['stats'][1]['stat']['name'] + ":" + stat_list['stats'][1]['base_stat']#attack
+    #     p stat_list['stats'][2]['stat']['name'] + ":" + stat_list['stats'][2]['base_stat']#defense
+    #     p stat_list['stats'][3]['stat']['name'] + ":" + stat_list['stats'][3]['base_stat']#special-attack
+    #     p stat_list['stats'][4]['stat']['name'] + ":" + stat_list['stats'][4]['base_stat']#special-defense
+    #     p stat_list['stats'][5]['stat']['name'] + ":" + stat_list['stats'][5]['base_stat']#speed
     end
 
 

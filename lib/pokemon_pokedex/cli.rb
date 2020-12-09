@@ -2,6 +2,7 @@ require "pry"
 class CLI
      #include Aesthetic
     def start
+        API.new.select_stats
         line_top
         poke_logo
         line_bottom
@@ -61,6 +62,10 @@ class CLI
     end
     def pokedex_search
          puts "               Alright, Lets learn about POKEMON"
+         pokedex_list
+    end
+    def pokedex_list
+
     end
     def team_builder
          puts "                    Lets pick your team!"

@@ -7,6 +7,6 @@ class Table
         puts "|_ATTACK: #{attack} SPC. ATTACK #{spc_attack}"
         puts "|_DEFENSE:#{attack} SPC. DEFENSE #{spc_defense}"
         puts "|_HT: #{height}   WT: #{weight}"
-        puts "|_____________________"
+        puts "╚════════════════____________"
     end
 end

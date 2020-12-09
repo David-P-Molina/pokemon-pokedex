@@ -3,7 +3,7 @@ class Pokemon
     @@all = []
     #Methods to build
     # initialize
-    attr_reader :name, :url, :number
+    attr_reader :name, :url, :number#add stats 
     def initialize(name, url)
         @name = name
         @url = url
