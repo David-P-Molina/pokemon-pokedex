@@ -26,7 +26,21 @@ class Pokemon
         all.detect{|poke| poke.number == number}
     end
     # find or create by name ##is this needed
-    def get_pokemon_by_number#Uses second parse method to retrieve pokemon stats## add description retrieval
+    def get_pokemon_description#Uses second parse method to retrieve pokemon stats## add description retrieval
+        self.find_by_number
+        @description = description
+    end
+    def get_pokemon_stats#Uses second parse method to retrieve pokemon stats## add description retrieval
+    self.find_by_number
+    @height = height
+    @weight = weight
+    @type = type
+    @hp = hp
+    @attack = attack
+    @defense = defense
+    @spc_attack = spc_attack
+    @spc_defense = spc_defense
+    @speed = speed
     end
     def get_pokemon_list
     #iterator that instantiates eaach new pokemon that is retrieved from pokemon list

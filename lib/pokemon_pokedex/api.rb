@@ -14,12 +14,10 @@ class API
     def pokemon_roster
         binding.pry
         pokemon_list = JSON.parse(self.get_pokemon_list)
-        pokemon_list['results'].collect do |hash|
-            hash.each do |key, value|
-            Pokemon.new(key, value)
+        pokemon_list['results'].collect do |name, url|
+            Pokemon.new(name, url)
             #    "#{key}: #{value}"#Instantiate Pokemon objects from each pokemon hash
             #returns {"name"=>"bulbasaur", "url"=>"https://pokeapi.co/api/v2/pokemon/1/"}, {"name"=>"ivysaur", "url"=>"https://pokeapi.co/api/v2/pokemon/2/"}
-            end
         end
     end
 
@@ -36,10 +34,10 @@ class API
                 #\fThe plant sprouts\nand grows with\nthis POKéMON." 
     end
     #stat
-    def select_stats(i)#types, name, height, weight, stats 
+    def select_stats(url)#types, name, height, weight, stats 
         binding.pry
-        url = "https://pokeapi.co/api/v2/pokemon/#{i}/"
-        uri = URI.parse(url) #converts and parses out URL info
+        poke_url = url
+        uri = URI.parse(poke_url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)
         return {name: parse_response['species']['name']}
