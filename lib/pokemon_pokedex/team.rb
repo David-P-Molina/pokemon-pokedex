@@ -5,10 +5,10 @@ class Team
 #Stored in the array are user selected pokemon
     # def self.team_size#method that ensures there are only 6 spots filled
     #    # binding.pry
-    #     if @@team.length >= 6
-    #         puts "It looks like you already have 6 pokemon!"
-    #     else 
+    #     if @@team.length <= 6
     #         @@team << self
+    #     else 
+    #         puts "It looks like you already have 6 pokemon!"
     #     end
     # end
     def save#method that adds to an array
@@ -18,8 +18,17 @@ class Team
     def self.team
         @@team
     end
+    def self.clear
+        @@team.clear
+    end
     def list_team#method that lists out the team
-        p self.class.join(" ") #need to test and finalize? Should this go in cli class?
+        if self.team.length <= 5
+            num = 6-self.team.length
+            "You still have space for #{num} pokemon!Lets pick another one!"
+        else
+            puts "Presenting Your dreamteam!"
+        p "Current Team: " self.team.join(", ") #need to test and finalize? Should this go in cli class?
+        end
     end
     def self.clear#method that clears the team
         self.class.clear
