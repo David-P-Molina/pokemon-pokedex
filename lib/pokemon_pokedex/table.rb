@@ -1,7 +1,9 @@
 class Table
-    #instantiate
+    #instantiate a table object and add attr_accessor
+    attr_accessor :name, :url, :number, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
+
     def initialize
-        
+
     end
     def display_team_member #accepts (number, name, type, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
         puts "╚═POKEDEX ##{number}| #{name}  "
