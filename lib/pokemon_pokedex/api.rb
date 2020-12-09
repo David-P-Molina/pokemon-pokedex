@@ -33,9 +33,9 @@ class API
                 #\fThe plant sprouts\nand grows with\nthis POKéMON." 
     end
     #stat
-    def select_stats#types, name, height, weight, stats 
+    def select_stats(i)#types, name, height, weight, stats 
         binding.pry
-        url = "https://pokeapi.co/api/v2/pokemon/4/"
+        url = "https://pokeapi.co/api/v2/pokemon/#{i}/"
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)

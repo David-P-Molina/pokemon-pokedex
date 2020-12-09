@@ -2,7 +2,7 @@ require "pry"
 class CLI
      #include Aesthetic
     def start
-        API.new.select_stats
+        #API.new.select_stats
         line_top
         poke_logo
         line_bottom
@@ -12,7 +12,7 @@ class CLI
         ready_or_not
     end
     def user_greeting
-         puts " "
+        
          puts "                             Hello there!"
          puts "           Welcome to the Kanto Pokedex & Team Builder CLI app!"
          puts "            My name is OAK! People call me the POKEMON PROF! "

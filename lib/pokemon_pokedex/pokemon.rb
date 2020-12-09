@@ -10,18 +10,27 @@ class Pokemon
         @number = @@all.length + 1
         save
     end
-    def save# save
+    def save
         self.class.all << self
     end
-    def self.all    # self.all
+    def self.all 
         @@all
     end
     def self.clear# self.clear is this needed?
         self.class.all.clear 
     end
-    # self.create
+    def self.create(name, url)
+        pokemon = new(name, url)
+        pokemon.save
+        pokemon
+    end
     # find_by_name
     # find or create by name
+    def get_pokemon#Uses second parse method to retrieve pokemon stats## add description retrieval
+    end
+    def get_pokemon_list
+    #iterator that instantiates eaach new pokemon that is retrieved from pokemon list
+    end
     # findbynumber
     # findbytype
    # binding.pry
