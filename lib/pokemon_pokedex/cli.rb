@@ -1,6 +1,6 @@
 require "pry"
 class CLI
-     #include Aesthetic
+     #include Aesthetic ##module
     def start
         #API.new.select_stats
         line_top
@@ -12,17 +12,14 @@ class CLI
         ready_or_not
     end
     def user_greeting
-        
          puts "                             Hello there!"
          puts "           Welcome to the Kanto Pokedex & Team Builder CLI app!"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts " For some people POKEMON are pets. Others use them for fights. Here..."
          puts "                 Here we study POKEMON as a profession."
-         puts " "
     end
     def user_name
-         puts " "
          puts "                      First, what is your name?"
          @@name = gets.chomp.upcase
          line
@@ -35,7 +32,7 @@ class CLI
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
                choice
-          elsif input == "no" || input == "n"
+          elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
           else
@@ -45,7 +42,7 @@ class CLI
     end
      def choice
          puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
-         puts "      Or are you ready to build a team?please type (pokemon or team)"
+         puts "      Or are you ready to build a team? please choose (pokemon, team, exit)"
          path = gets.chomp.downcase
          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
           pokedex_search
@@ -55,6 +52,8 @@ class CLI
          elsif path == "or"
           puts "         I see you have a sense of humor. Lets try this again!"
           choice
+         elsif path == "exit" || path == "exit!"
+          exit
          else
           invalid_input
           choice
