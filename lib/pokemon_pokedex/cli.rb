@@ -31,7 +31,8 @@ class CLI
          puts "                 #{@@name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
-               choice
+               all_pokedex_list
+               pokedex_or_team  
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
@@ -39,8 +40,29 @@ class CLI
                invalid_input
                ready_or_not
           end
-    end
-     def choice
+     end
+     def all_pokedex_list #create method in pokemon class that retrieves this info
+          #lists pokemon by number and name
+           Pokemon.all.each do |name,number|
+               "#{number}. #{name}"
+           end
+           # puts "Would you like to see a shorter list" create option for shorter list
+           #  input = gets.chomp.downcase
+           # if input == "yes" || input == "y"
+           #      short_pokedex_list
+           # elsif input == "no" || input == "n"
+           #        pokedex_or_team
+           # else
+           #      invalid_input
+           #      all_pokedex_list
+     end
+     # def short_pokedex_list
+     #      @count ||= 1
+     #      pokemon[count..count+40].each_with_index do |number, name|
+     #           puts "#{number}. #{name}"
+     #            end
+     # end
+     def pokedex_or_team
          puts "  #{@@name} would you like to search the POKEDEX for a certain POKEMON? "
          puts "      Or are you ready to build a team? please choose (pokemon, team, exit)"
          path = gets.chomp.downcase
@@ -62,9 +84,6 @@ class CLI
     def pokedex_search
          puts "               Alright, Lets learn about POKEMON"
          pokedex_list
-    end
-    def pokedex_list
-
     end
     def team_builder
          puts "                    Lets pick your team!"
