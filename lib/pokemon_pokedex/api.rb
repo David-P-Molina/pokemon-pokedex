@@ -18,7 +18,7 @@ class API
 
     #description
     def self.select_description #description ##i should be set to Pokemon.number
-        number = Pokemon.find_by_number 
+       # number = Pokemon.find_by_number 
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}/" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
@@ -35,23 +35,24 @@ class API
     def self.select_stats(url)#types, name, height, weight, stats 
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
+        response.body
     end
-        def pokemon_stats    
-        parse_response = JSON.parse(self.select_stats)
-        #Pokemon.name = {name: parse_response['species']['name']}
-        Pokemon.height = {height: parse_response['height']}
-        Pokemon.weight = {weight: parse_response['weight']}
-        Pokemon.type = {type: parse_response['types'][0]['type']['name']}
-        Pokemon.hp = {hp: parse_response['stats'][0]['base_stat']}
-        Pokemon.attack = {attack: parse_response['stats'][1]['base_stat']}
-        Pokemon.defense = {defense: parse_response['stats'][2]['base_stat']}
-        Pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
-        Pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
-        Pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
+    def self.pokemon_stats(url)    
+        parse_response = JSON.parse(self.select_stats(url))
+        pokemon = Pokemon.find_by_url(url)
+        pokemon.height = {height: parse_response['height']}
+        pokemon.weight = {weight: parse_response['weight']}
+        pokemon.type = {type: parse_response['types'][0]['type']['name']}
+        pokemon.hp = {hp: parse_response['stats'][0]['base_stat']}
+        pokemon.attack = {attack: parse_response['stats'][1]['base_stat']}
+        pokemon.defense = {defense: parse_response['stats'][2]['base_stat']}
+        pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
+        pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
+        pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
         #alternate option? Pokemon.speed = parse_response['stats'][5]['base_stat']
     end
 end
-API.new.pokemon_description(3)
+
 
 # names = API.new.get_pokemon
 # puts names

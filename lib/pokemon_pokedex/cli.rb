@@ -1,7 +1,7 @@
 require "pry"
 class CLI
      #include Aesthetic ##module
-     attr_reader :name
+     attr_reader :name, :pokemons
      attr_accessor :count
      def start
         #API.new.select_stats
@@ -44,14 +44,14 @@ class CLI
           end
      end
      def pokedex_saved_list
-          pokemons = Pokemon.all
+          @pokemons = Pokemon.all
           pokemons.each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
           list_options
      end
      def pokedex_list
-          pokemons = API.pokemon_roster #array of pokemonobjects
+          @pokemons = API.pokemon_roster #array of pokemonobjects
           pokemons.each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
@@ -73,10 +73,12 @@ class CLI
           puts "           To view a Pokemon type their Pokedex number"
           puts "           To navigate type Previous, Next or All"
           input = gets.chomp.downcase
-          if Integer === input.to_i  && (1..151) === input.to_i
+          if (1..151) === input.to_i
                puts " Loading Info..."
-               API.pokemon_description
-               API.select_stats
+               # API.pokemon_description
+               # API.select_stats
+               pokemon = @pokemons[input.to_i-1]
+               API.pokemon_stats(pokemon.url)
                #method that sends number to pokemon class who uses number to call api for info and use info in table class to
                #display here
           elsif input == "all"
@@ -88,7 +90,7 @@ class CLI
           elsif input == "previous"
                self.count -= 40
                short_pokedex_list
-          elsif Integer === input.to_i && input.to_i > 151
+          elsif input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
           elsif input == "exit" || input == "exit!"
@@ -106,13 +108,15 @@ class CLI
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
               short_pokedex_list ##Build this method
-          elsif Integer === input.to_i  && (1..151) === input.to_i
+          elsif (1..151) === input.to_i
                puts " Loading Info..."
-               Pokemon.find_by_number # API.pokemon_description
-               Pokemon.find_url # API.select_stats
+               # binding.pry
+               pokemon = @pokemons[input.to_i-1]
+               API.pokemon_stats(pokemon.url)
+               #create display method 
                #method that sends number to pokemon class who uses number to call api for info and use info in table class to
                #display here
-          elsif Integer === input.to_i && input.to_i > 151
+          elsif input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
           elsif input == "exit" || input == "exit!"
