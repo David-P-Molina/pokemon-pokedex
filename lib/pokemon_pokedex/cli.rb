@@ -2,6 +2,7 @@ require "pry"
 class CLI
      #include Aesthetic ##module
      attr_reader :name
+     attr_accessor :count
      def start
         #API.new.select_stats
         line_top
@@ -42,7 +43,13 @@ class CLI
                ready_or_not
           end
      end
-     
+     def pokedex_saved_list
+          pokemons = Pokemon.all
+          pokemons.each do |pokemon|
+               puts pokemon.number.to_s + ". " + pokemon.name 
+          end
+          list_options
+     end
      def pokedex_list
           pokemons = API.pokemon_roster #array of pokemonobjects
           pokemons.each do |pokemon|
@@ -51,14 +58,14 @@ class CLI
           list_options
      end
      def short_pokedex_list ##finish logic
-          count = 0
+          @count ||= 0
           pokemons = Pokemon.all #array of pokemonobjects
-          pokemons[count..count+40].each do |pokemon|
+          pokemons[count..count+39].each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
-          puts "                        Next-->" if count.between?(1,40)
-          puts "           <--Previous  Next-->" if count.between?(40,120)
-          puts "           <--Previous " if count.between?(120,151)
+          puts "                       -All- Next-->" if count.between?(0,39)
+          puts "           <--Previous -All- Next-->" if count.between?(40,119)
+          puts "           <--Previous -All-" if count.between?(120,151)
           short_list_options
      end
      
@@ -70,14 +77,24 @@ class CLI
                puts " Loading Info..."
                #method that sends number to pokemon class who uses number to call api for info and use info in table class to
                #display here
+          elsif input == "all"
+               binding.pry
+               pokedex_saved_list
+          elsif input == "next"
+               self.count += 40
+               short_pokedex_list
+          elsif input == "previous"
+               self.count -= 40
+               short_pokedex_list
           elsif Integer === input.to_i && input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
           elsif input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
-          elsif input == "all"
-               pokedex_list
+          else
+               invalid_input
+               short_pokedex_list
           end
      end
 
@@ -85,8 +102,7 @@ class CLI
           puts "           To view a Pokemon type their Pokedex number"
           puts "             To see a shorter list type short list"
           input = gets.chomp.downcase
-          #binding.pry
-          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"
+          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
               short_pokedex_list ##Build this method
           elsif Integer === input.to_i  && (1..151) === input.to_i
                puts " Loading Info..."
