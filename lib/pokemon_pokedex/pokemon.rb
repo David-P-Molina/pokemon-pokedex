@@ -27,7 +27,7 @@ class Pokemon
     def self.find_by_number(number)
     binding.pry
         all.detect{|poke| poke.number == number}
-        pokemon.url
+        pokemon.url #connect to api
     end
     
     def get_pokemon_stats#Uses second parse method to retrieve pokemon stats## add description retrieval

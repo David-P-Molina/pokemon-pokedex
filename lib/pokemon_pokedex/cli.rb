@@ -33,7 +33,7 @@ class CLI
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
           #     all_pokedex_list
-               pokemon_list
+               pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                exit 
@@ -54,12 +54,14 @@ class CLI
           puts "           To view a Pokemon type their Pokedex number"
           puts "             To see a shorter list type short list"
           input = gets.chomp.downcase
+          #binding.pry
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"
-          #    short_pokedex_list ##Build this method
-               pokemon_list
-          elsif input.to_i == Integer && (1..151) === input.to_i
-               puts " Loading pokemon info and "
-          elsif input.to_i == Integer && input.to_i > 151
+              short_pokedex_list ##Build this method
+          elsif Integer === input.to_i  && (1..151) === input.to_i
+               puts " Loading Info..."
+               #method that sends number to pokemon class who uses number to call api for info and use info in table class to
+               #display here
+          elsif Integer === input.to_i && input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
           elsif input == "exit" || input == "exit!"
@@ -90,6 +92,9 @@ class CLI
           pokemon[count..count+40].each_with_index do |number, name|
                puts "#{number}. #{name}"
                 end
+          short_pokedex_options
+     end
+     def short_pokedex_options
      end
      def pokedex_or_team
          puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
@@ -117,9 +122,6 @@ class CLI
          puts "         You remind me of my grandson... I forget his name."
          puts "     He was always fooling around too! Lets try one more time!"  
      line
-    end
-    def menu
-         puts "Please pick a number from 1-151 or if you are feeling lucky type random!"
     end
          #
     #What pokemon would you like to learn about
