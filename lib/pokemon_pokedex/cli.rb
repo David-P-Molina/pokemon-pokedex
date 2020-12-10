@@ -72,21 +72,7 @@ class CLI
                list_options
           end
       end
-     # def all_pokedex_list #create method in pokemon class that retrieves this info
-     #       Pokemon.all do |name,number|
-     #           "#{number}. #{name}"
-     #       end
-     #      puts "Would you like to see a shorter list" 
-     #        input = gets.chomp.downcase
-     #       if input == "yes" || input == "y"
-     #            short_pokedex_list
-     #       elsif input == "no" || input == "n"
-     #              pokedex_or_team
-     #       else
-     #            invalid_input
-     #            all_pokedex_list
-     #      end
-     # end
+
      def short_pokedex_list ##finish logic
           @count ||= 1
           pokemon[count..count+40].each_with_index do |number, name|

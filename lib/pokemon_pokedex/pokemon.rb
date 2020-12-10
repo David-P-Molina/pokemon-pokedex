@@ -14,12 +14,11 @@ class Pokemon
     def self.all 
         @@all
     end
-    def self.clear# self.clear is this needed?
+    def self.clear
         self.class.all.clear 
     end
     def self.create(name, url)
         pokemon = new(name, url)
-
         pokemon.number = @@all.length + 1
         pokemon.save
         pokemon

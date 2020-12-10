@@ -15,7 +15,7 @@ class API
     end
 
     #description
-    def self.select_description(i) #description ##figure out how to add userinput
+    def self.select_description(i) #description ##i should be set to Pokemon.number
         url = "https://pokeapi.co/api/v2/pokemon-species/#{i}/" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
