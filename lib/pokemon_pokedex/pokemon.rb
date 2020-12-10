@@ -1,7 +1,7 @@
 require "pry"
 class Pokemon
     @@all = []
-    attr_accessor :name, :url, :number, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
+    attr_accessor :name, :url, :number, :description, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
     def initialize(name, url)
         @name = name
         @url = url
@@ -40,7 +40,7 @@ class Pokemon
     #binding.pry
         all.detect{|poke| poke.number == number}
         pokemon.url #connect to api
-        API.pokemon_description
+        API.pokemon_stats
     end
     
     def get_pokemon_stats#Uses second parse method to retrieve pokemon stats## add description retrieval
@@ -59,4 +59,4 @@ class Pokemon
     end
 
 end
-Pokemon.all
+Pokemon.find_by_number

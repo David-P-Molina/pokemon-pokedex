@@ -14,9 +14,11 @@ class API
         end
     end
 
+
+
     #description
-    def self.select_description(number) #description ##i should be set to Pokemon.number
-        
+    def self.select_description #description ##i should be set to Pokemon.number
+        number = Pokemon.find_by_number 
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}/" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
@@ -24,17 +26,18 @@ class API
    end
     def self.pokemon_description
         description_list = JSON.parse(self.select_description)
-        description_list['flavor_text_entries'][0]['flavor_text'] #example"A strange seed was\nplanted on its\nback at birth.
+        description_list['flavor_text_entries'][0]['flavor_text'] #example "A strange seed was\nplanted on its\nback at birth.
                 #\fThe plant sprouts\nand grows with\nthis POKéMON." 
-  
     end
+
+
     #stat
     def self.select_stats(url)#types, name, height, weight, stats 
-        binding.pry
-        
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
-        parse_response = JSON.parse(response.body)
+    end
+        def pokemon_stats    
+        parse_response = JSON.parse(self.select_stats)
         #Pokemon.name = {name: parse_response['species']['name']}
         Pokemon.height = {height: parse_response['height']}
         Pokemon.weight = {weight: parse_response['weight']}

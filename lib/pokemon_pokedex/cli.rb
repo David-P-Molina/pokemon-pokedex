@@ -75,6 +75,8 @@ class CLI
           input = gets.chomp.downcase
           if Integer === input.to_i  && (1..151) === input.to_i
                puts " Loading Info..."
+               API.pokemon_description
+               API.select_stats
                #method that sends number to pokemon class who uses number to call api for info and use info in table class to
                #display here
           elsif input == "all"
@@ -106,6 +108,8 @@ class CLI
               short_pokedex_list ##Build this method
           elsif Integer === input.to_i  && (1..151) === input.to_i
                puts " Loading Info..."
+               Pokemon.find_by_number # API.pokemon_description
+               Pokemon.find_url # API.select_stats
                #method that sends number to pokemon class who uses number to call api for info and use info in table class to
                #display here
           elsif Integer === input.to_i && input.to_i > 151
@@ -143,12 +147,10 @@ class CLI
          puts "                    Lets pick your team!"
     end
     def invalid_input
-         puts "         You remind me of my grandson... I forget his name."
+         puts "        You remind me of my grandson... I forget his name."
          puts "     He was always fooling around too! Lets try one more time!"  
      line
     end
-         #
-    #What pokemon would you like to learn about
     #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
     #are you ready to start building your team?
     #Are you sure you want to set your pokemon free?
