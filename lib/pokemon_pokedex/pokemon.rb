@@ -24,10 +24,23 @@ class Pokemon
         pokemon.save
         pokemon
     end
-    def self.find_by_number(number)
+
+
+    def get_pokemon_description#Uses second parse method to retrieve pokemon stats## add description retrieval
+        self.find_by_number
+        @description = description
+    end
+    def self.find_by_number #connect and use number and string interpolate it into url to search for info
+        all.detect{|poke| poke.number == number}
+        pokemon.number
+    end
+
+
+    def self.find_by_url #connect and request from api to recieve description
     #binding.pry
         all.detect{|poke| poke.number == number}
         pokemon.url #connect to api
+        API.pokemon_description
     end
     
     def get_pokemon_stats#Uses second parse method to retrieve pokemon stats## add description retrieval
@@ -43,10 +56,6 @@ class Pokemon
         @speed = speed
       #  or 
       #  API.select_stats
-    end
-    def get_pokemon_description#Uses second parse method to retrieve pokemon stats## add description retrieval
-        self.find_by_number
-        @description = description
     end
 
 end

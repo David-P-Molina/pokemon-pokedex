@@ -15,22 +15,24 @@ class API
     end
 
     #description
-    def self.select_description(i) #description ##i should be set to Pokemon.number
-        url = "https://pokeapi.co/api/v2/pokemon-species/#{i}/" #use string interpolation
+    def self.select_description(number) #description ##i should be set to Pokemon.number
+        
+        url = "https://pokeapi.co/api/v2/pokemon-species/#{number}/" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         response.body
    end
     def self.pokemon_description
         description_list = JSON.parse(self.select_description)
-        description_list['flavor_text_entries'][0] #example"A strange seed was\nplanted on its\nback at birth.
+        description_list['flavor_text_entries'][0]['flavor_text'] #example"A strange seed was\nplanted on its\nback at birth.
                 #\fThe plant sprouts\nand grows with\nthis POKéMON." 
+  
     end
     #stat
     def self.select_stats(url)#types, name, height, weight, stats 
         binding.pry
-        poke_url = url
-        uri = URI.parse(poke_url) #converts and parses out URL info
+        
+        uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
         parse_response = JSON.parse(response.body)
         #Pokemon.name = {name: parse_response['species']['name']}
@@ -45,26 +47,8 @@ class API
         Pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
         #alternate option? Pokemon.speed = parse_response['stats'][5]['base_stat']
     end
-
-    # end
-    # def name
-    #     stat_list = JSON.parse(self.select_stats)
-    #     #pokemon_stats
-    #     stat_list['species']['name']
-    # end
-    # def stats
-    #     stat_list = JSON.parse(self.select_stats)
-    #     #pokemon_stats #do i need to split this up?
-    #     # counter = 0
-    #     # while counter < 6
-    #     + ":" + stat_list['stats'][0]['base_stat']#hp
-    #     + ":" + stat_list['stats'][1]['base_stat']#attack
-    #     + ":" + stat_list['stats'][2]['base_stat']#defense
-    #     + ":" + stat_list['stats'][3]['base_stat']#special-attack
-    #     + ":" + stat_list['stats'][4]['base_stat']#special-defense
-    #     + ":" + stat_list['stats'][5]['base_stat']#speed
-    end
-
+end
+API.new.pokemon_description(3)
 
 # names = API.new.get_pokemon
 # puts names
