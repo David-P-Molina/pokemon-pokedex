@@ -42,14 +42,45 @@ class CLI
                ready_or_not
           end
      end
-
+     
      def pokedex_list
           pokemons = API.pokemon_roster #array of pokemonobjects
           pokemons.each do |pokemon|
-           puts pokemon.number.to_s + ". " + pokemon.name 
+               puts pokemon.number.to_s + ". " + pokemon.name 
           end
           list_options
-      end
+     end
+     def short_pokedex_list ##finish logic
+          count = 0
+          pokemons = Pokemon.all #array of pokemonobjects
+          pokemons[count..count+40].each do |pokemon|
+               puts pokemon.number.to_s + ". " + pokemon.name 
+          end
+          puts "                        Next-->" if count.between?(1,40)
+          puts "           <--Previous  Next-->" if count.between?(40,120)
+          puts "           <--Previous " if count.between?(120,151)
+          short_list_options
+     end
+     
+     def short_list_options
+          puts "           To view a Pokemon type their Pokedex number"
+          puts "           To navigate type Previous, Next or All"
+          input = gets.chomp.downcase
+          if Integer === input.to_i  && (1..151) === input.to_i
+               puts " Loading Info..."
+               #method that sends number to pokemon class who uses number to call api for info and use info in table class to
+               #display here
+          elsif Integer === input.to_i && input.to_i > 151
+               puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
+               list_options
+          elsif input == "exit" || input == "exit!"
+               puts "               We are sad to see you go! Please come again soon!"
+               exit 
+          elsif input == "all"
+               pokedex_list
+          end
+     end
+
       def list_options
           puts "           To view a Pokemon type their Pokedex number"
           puts "             To see a shorter list type short list"
@@ -73,15 +104,6 @@ class CLI
           end
       end
 
-     def short_pokedex_list ##finish logic
-          @count ||= 1
-          pokemon[count..count+40].each_with_index do |number, name|
-               puts "#{number}. #{name}"
-                end
-          short_pokedex_options
-     end
-     def short_pokedex_options
-     end
      def pokedex_or_team
          puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
          puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
@@ -140,5 +162,4 @@ class CLI
           puts "╚═════════════════════════════════════════════════════════════════════╝"
      end
 end
-CLI.new.start
 ##tty for columns

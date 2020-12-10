@@ -2,4 +2,4 @@
 
 require_relative "../config/environment"
 puts "welcome"
-#CLI.new.start
+CLI.new.start

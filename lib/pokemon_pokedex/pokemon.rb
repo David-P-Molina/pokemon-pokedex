@@ -12,6 +12,7 @@ class Pokemon
         self.class.all << self
     end
     def self.all 
+     #   binding.pry
         @@all
     end
     def self.clear
@@ -24,7 +25,7 @@ class Pokemon
         pokemon
     end
     def self.find_by_number(number)
-    binding.pry
+    #binding.pry
         all.detect{|poke| poke.number == number}
         pokemon.url #connect to api
     end
@@ -49,3 +50,4 @@ class Pokemon
     end
 
 end
+Pokemon.all
