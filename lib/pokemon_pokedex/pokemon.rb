@@ -6,6 +6,18 @@ class Pokemon
         @name = name
         @url = url
         @number = @@all.length + 1
+        @description = description
+        @height = height
+        @weight = weight
+        @type = type
+        @hp = hp
+        @attack = attack
+        @defense = defense
+        @spc_attack = spc_attack
+        @spc_defense = spc_defense
+        @speed = speed
+
+
         save
     end
     def save
