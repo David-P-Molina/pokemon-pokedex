@@ -11,7 +11,7 @@ class CLI
     end
     def user_greeting
          puts "                             Hello there!"
-         puts "           Welcome to the Kanto Pokedex & Team Builder CLI app!"
+         puts "                      Welcome to the Kanto Pokedex"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts " For some people POKEMON are pets. Others use them for fights. Here..."
@@ -29,6 +29,7 @@ class CLI
          puts "                 #{name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
+               retrieve_roster
                pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
@@ -38,15 +39,12 @@ class CLI
                ready_or_not
           end
      end
-     def pokedex_saved_list
-          @pokemons = Pokemon.all
-          pokemons.each do |pokemon|
-               puts pokemon.number.to_s + ". " + pokemon.name 
-          end
-          list_options
+     def retrieve_roster
+          @pokemons = API.pokemon_roster #array of pokemonobjects
+          @pokemons
      end
      def pokedex_list
-          @pokemons = API.pokemon_roster #array of pokemonobjects
+          @pokemons = Pokemon.all
           pokemons.each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
@@ -61,22 +59,20 @@ class CLI
           puts "                       -All- Next-->" if count.between?(0,39)
           puts "           <--Previous -All- Next-->" if count.between?(40,119)
           puts "           <--Previous -All-" if count.between?(120,151)
+          puts "           To view a Pokemon type their Pokedex number"
+          puts "           To navigate type Previous, Next or All"
           short_list_options
      end
      
      def short_list_options
-          puts "           To view a Pokemon type their Pokedex number"
-          puts "           To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if (1..151) === input.to_i
                puts " Loading Info..."
                pokemon = @pokemons[input.to_i-1]
                stats = API.pokemon_stats(pokemon.url)
-               #binding.pry
                description = API.pokemon_description(pokemon.number)
                puts description 
                puts stats
-               binding.pry
                #trigger display herestats.pokedex_display_card
           elsif input == "all"               
                pokedex_saved_list
@@ -174,13 +170,13 @@ class CLI
           puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
      end
      def pokedex_display_card#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
-          puts "╚═POKEDEX ##{number}| #{name}  "
-          puts "╚═TYPE:#{type}"
+          puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+          puts "╚═TYPE:#{stats.type}"
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
           puts "#{description}"
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-          puts "╚═HP: #{hp}    SPEED: #{speed} ATTACK: #{attack} SPC. ATTACK #{spc_attack}"
-          puts "╚═DEFENSE:#{defense} SPC. DEFENSE #{spc_defense} HT: #{height}   WT: #{weight}"
+          puts "╚═HP: #{stats.hp}    SPEED: #{stats.speed} ATTACK: #{stats.attack} SPC. ATTACK #{stats.spc_attack}"
+          puts "╚═DEFENSE:#{stats.defense} SPC. DEFENSE #{stats.spc_defense} HT: #{stats.height}   WT: #{stats.weight}"
       end
 end
 ##tty for columns
