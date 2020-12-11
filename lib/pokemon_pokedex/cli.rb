@@ -1,6 +1,6 @@
 require "pry"
 class CLI
-     attr_reader :name, :pokemons
+     attr_reader :name, :pokemons, :pokemon
      attr_accessor :count
      def start
         poke_logo
@@ -58,13 +58,13 @@ class CLI
           end
           short_list_options
      end
-     def retrieve_pokemon_info
+     def retrieve_pokemon_info(input)
+          binding.pry
           puts " Loading Info..."
-          pokemon = @pokemons[input.to_i-1]
+          @pokemon = @pokemons[input.to_i-1]
           stats = API.pokemon_stats(pokemon.url)
           description = API.pokemon_description(pokemon.number)
-          puts description 
-          puts stats# display card better
+          pokemon# display card better
           #trigger display herestats.pokedex_display_card
      end
      def short_list_options
@@ -75,13 +75,14 @@ class CLI
           puts "           To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if (1..151) === input.to_i
-               retrieve_pokemon_info
+               binding.pry
+               retrieve_pokemon_info(input)
           elsif input == "all"               
                pokedex_list
-          elsif input == "next"
-               self.count += 40
+          elsif input == "next" && self.count < 119 
+               self.count += 40 
                short_pokedex_list
-          elsif input == "previous"
+          elsif input == "previous" && self.count > 39
                self.count -= 40
                short_pokedex_list
           elsif input.to_i > 151
@@ -103,12 +104,13 @@ class CLI
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list ##Build this method
           elsif (1..151) === input.to_i
-               retrieve_pokemon_info
+               retrieve_pokemon_info(input)
           elsif input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
           elsif input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
+               line
                exit 
           else
                invalid_input
@@ -122,33 +124,33 @@ class CLI
           line
      end
      def poke_logo #Source https://ascii.co.uk/art/pokemon
-          puts "╔═════════════════════════════════════════════════════════════════════╗"
-          puts "                                       .::."
-          puts "                                     .;:**' "           
-          puts "                            .                  "
-          puts "     .:XHHHHk.              db.   .;;.     dH  MX   "
-          puts "   oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN"
-          puts "  'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM"
-          puts "     `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP"
-          puts "      'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM"
-          puts "       ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP"
-          puts "        ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM"
-          puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
-          puts "         'MMM.                                             IMX"
-          puts "          ~M!M         The Original 151 Pokemon            IMP"
-          puts "╚═════════════════════════════════════════════════════════════════════╝"
+          puts "╔══════════════════════════════════════════════════════════════════════╗"
+          puts "║                                        .::.                          ║"
+          puts "║                                      .;:**'                          ║"           
+          puts "║                             .                                        ║"
+          puts "║      .:XHHHHk.              db.   .;;.     dH  MX                    ║"
+          puts "║    oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN         ║"
+          puts "║   'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM    ║" 
+          puts "║      `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP    ║"
+          puts "║       'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM     ║"
+          puts "║        ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP     ║" 
+          puts "║         ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM      ║"
+          puts "║          MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP      ║"
+          puts "║          'MMM.         The Original 151 Pokemon            IMX       ║"
+          puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║"
+          puts "╚══════════════════════════════════════════════════════════════════════╝"
      end
      def line
           puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
      end
-     def pokedex_display_card#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
+     def pokedex_display_card(pokemon)#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
           puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
-          puts "╚═TYPE:#{stats.type}"
+          puts "╚═TYPE:#{pokemon.type}"
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-          puts "#{description}"
+          puts "#{pokemon.description}"
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-          puts "╚═HP: #{stats.hp}    SPEED: #{stats.speed} ATTACK: #{stats.attack} SPC. ATTACK #{stats.spc_attack}"
-          puts "╚═DEFENSE:#{stats.defense} SPC. DEFENSE #{stats.spc_defense} HT: #{stats.height}   WT: #{stats.weight}"
+          puts "╚═HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+          puts "╚═DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{stats.weight}"
           short_list_options
      end
 end
