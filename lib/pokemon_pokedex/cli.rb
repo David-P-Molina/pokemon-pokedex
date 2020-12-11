@@ -3,9 +3,7 @@ class CLI
      attr_reader :name, :pokemons
      attr_accessor :count
      def start
-        line_top
         poke_logo
-        line_bottom
         user_greeting
         line
         user_name
@@ -151,6 +149,7 @@ class CLI
     #Are you sure you want to set your pokemon free?
     #exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
     def poke_logo #Source https://ascii.co.uk/art/pokemon
+          puts "╔═════════════════════════════════════════════════════════════════════╗"
           puts "                                       .::."
           puts "                                     .;:**' "           
           puts "                            .                  "
@@ -164,15 +163,10 @@ class CLI
           puts "         MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP"
           puts "         'MMM.                                             IMX"
           puts "          ~M!M         The Original 151 Pokemon            IMP"
+          puts "╚═════════════════════════════════════════════════════════════════════╝"
      end
      def line
           puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
-     end
-     def line_top
-          puts "╔═════════════════════════════════════════════════════════════════════╗"
-     end
-     def line_bottom
-          puts "╚═════════════════════════════════════════════════════════════════════╝"
      end
      def pokedex_display_card#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
           puts "╚═POKEDEX ##{number}| #{name}  "
