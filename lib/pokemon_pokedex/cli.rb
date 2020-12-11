@@ -1,10 +1,8 @@
 require "pry"
 class CLI
-     #include Aesthetic ##module
      attr_reader :name, :pokemons
      attr_accessor :count
      def start
-        #API.new.select_stats
         line_top
         poke_logo
         line_bottom
@@ -33,7 +31,6 @@ class CLI
          puts "                 #{name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
-          #     all_pokedex_list
                pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
@@ -57,9 +54,9 @@ class CLI
           end
           list_options
      end
-     def short_pokedex_list ##finish logic
+     def short_pokedex_list 
           @count ||= 0
-          pokemons = Pokemon.all #array of pokemonobjects
+          pokemons = Pokemon.all 
           pokemons[count..count+39].each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
@@ -75,15 +72,12 @@ class CLI
           input = gets.chomp.downcase
           if (1..151) === input.to_i
                puts " Loading Info..."
-               # API.pokemon_description
-               # API.select_stats
                pokemon = @pokemons[input.to_i-1]
                API.pokemon_stats(pokemon.url)
-               #method that sends number to pokemon class who uses number to call api for info and use info in table class to
-               #display here
-          elsif input == "all"
-               binding.pry
+               #trigger display here
+          elsif input == "all"               
                pokedex_saved_list
+               pokedex_list
           elsif input == "next"
                self.count += 40
                short_pokedex_list
@@ -110,12 +104,9 @@ class CLI
               short_pokedex_list ##Build this method
           elsif (1..151) === input.to_i
                puts " Loading Info..."
-               # binding.pry
                pokemon = @pokemons[input.to_i-1]
                API.pokemon_stats(pokemon.url)
-               #create display method 
-               #method that sends number to pokemon class who uses number to call api for info and use info in table class to
-               #display here
+               #add description method here
           elsif input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options

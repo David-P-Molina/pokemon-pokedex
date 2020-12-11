@@ -12,7 +12,6 @@ class Pokemon
         self.class.all << self
     end
     def self.all 
-     #   binding.pry
         @@all
     end
     def self.clear
@@ -36,27 +35,11 @@ class Pokemon
     end
 
 
-    def self.find_by_url(url) #connect and request from api to recieve description
-    #binding.pry
+    def self.find_by_url(url) 
         all.detect{|poke| poke.url == url}
-        # pokemon.url #connect to api
-        # API.pokemon_stats
     end
-    
     def get_pokemon_stats#Uses second parse method to retrieve pokemon stats## add description retrieval
-    binding.pry
         pokemon_instance = self.find_url
-        # @height = height #how do i connect this with method in api to assign variables to each other? 
-        # @weight = weight#in API class would i do Pokemon.height = {height: parse_response['height']}
-        # @type = type#did i just add a bunch of attr_writers again
-        # @hp = hp
-        # @attack = attack
-        # @defense = defense
-        # @spc_attack = spc_attack
-        # @spc_defense = spc_defense
-        # @speed = speed
-      #  or 
-      #  API.select_stats
     end
 
 end

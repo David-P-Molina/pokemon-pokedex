@@ -39,22 +39,18 @@ class API
     end
     def self.pokemon_stats(url)    
         parse_response = JSON.parse(self.select_stats(url))
+        binding.pry
         pokemon = Pokemon.find_by_url(url)
-        pokemon.height = {height: parse_response['height']}
-        pokemon.weight = {weight: parse_response['weight']}
-        pokemon.type = {type: parse_response['types'][0]['type']['name']}
-        pokemon.hp = {hp: parse_response['stats'][0]['base_stat']}
-        pokemon.attack = {attack: parse_response['stats'][1]['base_stat']}
-        pokemon.defense = {defense: parse_response['stats'][2]['base_stat']}
-        pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
-        pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
-        pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
-        #alternate option? Pokemon.speed = parse_response['stats'][5]['base_stat']
+        pokemon = {height: parse_response['height']},{weight: parse_response['weight']}
+        pokemon = {weight: parse_response['weight']}
+        pokemon = {type: parse_response['types'][0]['type']['name']}
+        pokemon = {hp: parse_response['stats'][0]['base_stat']}
+        pokemon = {attack: parse_response['stats'][1]['base_stat']}
+        pokemon = {defense: parse_response['stats'][2]['base_stat']}
+        pokemon = {spc_attack: parse_response['stats'][3]['base_stat']}
+        pokemon = {spc_defense: parse_response['stats'][4]['base_stat']}
+        pokemon = {speed: parse_response['stats'][5]['base_stat']}
+        #resets variable value need to figure out how to equal one thing
+        #figure out how to add all of these variables to said object
     end
 end
-
-
-# names = API.new.get_pokemon
-# puts names
-#  pokedex = API.new
-#  pokedex.pokemon_roster
