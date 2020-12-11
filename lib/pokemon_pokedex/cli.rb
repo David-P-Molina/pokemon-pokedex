@@ -32,7 +32,7 @@ class CLI
                retrieve_roster
                pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
-               puts "               We are sad to see you go! Please come again soon!"
+               puts "              We are sad to see you go! Please come again soon!"
                exit 
           else
                invalid_input
@@ -56,26 +56,27 @@ class CLI
           pokemons[count..count+39].each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
+          short_list_options
+     end
+     def retrieve_pokemon_info
+          puts " Loading Info..."
+          pokemon = @pokemons[input.to_i-1]
+          stats = API.pokemon_stats(pokemon.url)
+          description = API.pokemon_description(pokemon.number)
+          puts description 
+          puts stats# display card better
+          #trigger display herestats.pokedex_display_card
+     end
+     def short_list_options
           puts "                       -All- Next-->" if count.between?(0,39)
           puts "           <--Previous -All- Next-->" if count.between?(40,119)
           puts "           <--Previous -All-" if count.between?(120,151)
           puts "           To view a Pokemon type their Pokedex number"
           puts "           To navigate type Previous, Next or All"
-          short_list_options
-     end
-     
-     def short_list_options
           input = gets.chomp.downcase
           if (1..151) === input.to_i
-               puts " Loading Info..."
-               pokemon = @pokemons[input.to_i-1]
-               stats = API.pokemon_stats(pokemon.url)
-               description = API.pokemon_description(pokemon.number)
-               puts description 
-               puts stats
-               #trigger display herestats.pokedex_display_card
+               retrieve_pokemon_info
           elsif input == "all"               
-               pokedex_saved_list
                pokedex_list
           elsif input == "next"
                self.count += 40
@@ -100,12 +101,9 @@ class CLI
           puts "             To see a shorter list type short list"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
-              short_pokedex_list ##Build this method
+               short_pokedex_list ##Build this method
           elsif (1..151) === input.to_i
-               puts " Loading Info..."
-               pokemon = @pokemons[input.to_i-1]
-               API.pokemon_stats(pokemon.url)
-               #add description method here
+               retrieve_pokemon_info
           elsif input.to_i > 151
                puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
                list_options
@@ -118,38 +116,12 @@ class CLI
           end
       end
 
-     def pokedex_or_team
-         puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
-         puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
-         path = gets.chomp.downcase
-         if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
-          pokedex_list
-         elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
-          team_builder
-          puts "Lets start "
-         elsif path == "or"
-          puts "         I see you have a sense of humor. Lets try this again!"
-          pokedex_or_team
-         elsif path == "exit" || path == "exit!"
-          exit
-         else
-          invalid_input
-          pokedex_or_team
-         end
-    end
-    def team_builder
-         puts "                    Lets pick your team!"
-    end
-    def invalid_input
-         puts "        You remind me of my grandson... I forget his name."
-         puts "     He was always fooling around too! Lets try one more time!"  
-     line
-    end
-    #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
-    #are you ready to start building your team?
-    #Are you sure you want to set your pokemon free?
-    #exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
-    def poke_logo #Source https://ascii.co.uk/art/pokemon
+      def invalid_input
+          puts "        You remind me of my grandson... I forget his name."
+          puts "     He was always fooling around too! Lets try one more time!"  
+          line
+     end
+     def poke_logo #Source https://ascii.co.uk/art/pokemon
           puts "╔═════════════════════════════════════════════════════════════════════╗"
           puts "                                       .::."
           puts "                                     .;:**' "           
@@ -177,6 +149,32 @@ class CLI
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
           puts "╚═HP: #{stats.hp}    SPEED: #{stats.speed} ATTACK: #{stats.attack} SPC. ATTACK #{stats.spc_attack}"
           puts "╚═DEFENSE:#{stats.defense} SPC. DEFENSE #{stats.spc_defense} HT: #{stats.height}   WT: #{stats.weight}"
-      end
+     end
 end
 ##tty for columns
+#      def pokedex_or_team
+#          puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
+#          puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
+#          path = gets.chomp.downcase
+#          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
+#           pokedex_list
+#          elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
+#           team_builder
+#           puts "Lets start "
+#          elsif path == "or"
+#           puts "         I see you have a sense of humor. Lets try this again!"
+#           pokedex_or_team
+#          elsif path == "exit" || path == "exit!"
+#           exit
+#          else
+#           invalid_input
+#           pokedex_or_team
+#          end
+#     end
+#     def team_builder
+#          puts "                    Lets pick your team!"
+#     end
+#would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
+#are you ready to start building your team?
+#Are you sure you want to set your pokemon free?
+#exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
