@@ -14,8 +14,6 @@ class API
         end
     end
 
-    .replace(/[!@#$%^&*]/g, "")
-
     #description
     def self.select_description #description ##i should be set to Pokemon.number
        # number = Pokemon.find_by_number 
@@ -26,8 +24,7 @@ class API
    end
     def self.pokemon_description
         description_list = JSON.parse(self.select_description)
-        description_list['flavor_text_entries'][0]['flavor_text'].gsub(/[^A-Za-z]/, ' ') #example "A strange seed was\nplanted on its\nback at birth.
-                #\fThe plant sprouts\nand grows with\nthis POKéMON." 
+        description_list['flavor_text_entries'][0]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
     end
 
 
@@ -46,12 +43,9 @@ class API
         pokemon.type = {type: parse_response['types'][0]['type']['name']}
         pokemon.hp = {hp: parse_response['stats'][0]['base_stat']}
         pokemon.attack = {attack: parse_response['stats'][1]['base_stat']}
- #       binding.pry
         pokemon.defense = {defense: parse_response['stats'][2]['base_stat']}
         pokemon.spc_attack = {spc_attack: parse_response['stats'][3]['base_stat']}
         pokemon.spc_defense = {spc_defense: parse_response['stats'][4]['base_stat']}
         pokemon.speed = {speed: parse_response['stats'][5]['base_stat']}
-        #resets variable value need to figure out how to equal one thing
-        #figure out how to add all of these variables to said object
     end
 end
