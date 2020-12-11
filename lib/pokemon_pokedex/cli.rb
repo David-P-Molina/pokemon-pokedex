@@ -71,8 +71,13 @@ class CLI
           if (1..151) === input.to_i
                puts " Loading Info..."
                pokemon = @pokemons[input.to_i-1]
-               API.pokemon_stats(pokemon.url)
-               #trigger display here
+               stats = API.pokemon_stats(pokemon.url)
+               #binding.pry
+               description = API.pokemon_description(pokemon.number)
+               puts description 
+               puts stats
+               binding.pry
+               #trigger display herestats.pokedex_display_card
           elsif input == "all"               
                pokedex_saved_list
                pokedex_list
