@@ -149,6 +149,7 @@ class CLI
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
           puts "╚═HP: #{stats.hp}    SPEED: #{stats.speed} ATTACK: #{stats.attack} SPC. ATTACK #{stats.spc_attack}"
           puts "╚═DEFENSE:#{stats.defense} SPC. DEFENSE #{stats.spc_defense} HT: #{stats.height}   WT: #{stats.weight}"
+          short_list_options
      end
 end
 ##tty for columns
