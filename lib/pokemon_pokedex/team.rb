@@ -1,7 +1,7 @@
 require "pry"
 class Team
     @@team = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
-#create an array with 6 spots
+
 #Stored in the array are user selected pokemon
     # def self.team_size#method that ensures there are only 6 spots filled
     #    # binding.pry
@@ -14,7 +14,6 @@ class Team
     def save#method that adds to an array
         self.class.team << self
     end
-    #binding.pry
     def self.team
         @@team
     end
@@ -32,8 +31,7 @@ class Team
     end
     def self.clear#method that clears the team
         self.class.clear
-        puts "       You can't journey into the world of Pokemon with 0 pokemon!"
-        puts "                     Lets fill that team up!"
+        puts "       You released the pokemon into the wild!"
     end
     def remove_last_pokemon_added
         @@team.pop

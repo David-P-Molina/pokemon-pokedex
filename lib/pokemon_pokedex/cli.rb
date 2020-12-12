@@ -31,7 +31,8 @@ class CLI
     end
     def user_greeting
          puts "                             Hello there!"
-         puts "                       Welcome to the Kanto Pokedex"
+         puts "                       Welcome to the KANTO POKEDEX"
+         #puts "    & team builder! Yes you can pick up to 6 pokemon to help you on your journey!"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts "   For some people POKEMON are pets. Others use them for fights. Here..."
@@ -135,10 +136,13 @@ class CLI
            end
      end
      def pokemon_display_options
-          puts "             To navigate back to pokedex type all or shorterlist"
+          #puts "         If you would like to add this pokemon to your team type add"
+          puts "             To look at other pokemon type all or shorterlist"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
+          #elsif input == "add" || input == "+" || input == "add pokemon" || input == "yes" 
+
           else
                general_inputs(input)
           end
