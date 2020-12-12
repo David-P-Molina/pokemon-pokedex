@@ -98,6 +98,8 @@ class CLI
                    display_team_member(pokemon)
                end
           team_comment
+          line
+          team_display_options
      end
      #Input Options
      def list_options
@@ -143,6 +145,8 @@ class CLI
                pokedex_list
           elsif input == "roster" || input == "team" || input == "squad" 
                team_list
+          elsif input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
+               short_pokedex_list 
           else
                invalid_input
                list_options
@@ -170,15 +174,27 @@ class CLI
           puts "                   To view your team type roster"
           puts "             To look at other POKEMON type all or shorterlist"
           input = gets.chomp.downcase
-          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
-               short_pokedex_list 
-          elsif input == "add" || input == "+" || input == "add pokemon" || input == "yes" 
+          if input == "add" || input == "+" || input == "add pokemon" || input == "yes" 
                team_limiter_and_adder
-          elsif input == "roster" || input == "team" || input == "squad" 
+          else
+               general_inputs(input)
+          end
+     end
+     def team_display_options
+          puts "       Want to make changes to your team? Type clear to start over. "
+          puts "              Or to remove last pokemon added type Remove"
+          puts "             To look at other POKEMON type all or shorterlist"
+          puts "                    To start your journey type exit. "
+          input = gets.chomp.downcase
+          if input == "clear" || input == "remove all" || input == "remove all pokemon"
+               team_comment
+          elsif input == "last" || input == "remove" || input == "undo" || input == "back"
+               Team.remove_last_pokemon
                team_list
           else
                general_inputs(input)
           end
+          general_inputs
      end
      #additional messages
       def future_pokemon
@@ -209,11 +225,14 @@ class CLI
          if team == 0
                puts "            It looks like you have no pokemon on your team!"
                puts "              View a pokemon to add it to your roster!"
+               ready_or_not
          elsif team.between?(1,5)
                empty = 6 - team
                puts "            You have #{empty} pokemon to complete your team!"
+               list_options
          elsif team == 6
-               puts "            It looks like you have too many Pokemon..."
+               puts "                     All your spots are filled! "
+               list_options
            else
                general_inputs
      end
@@ -227,7 +246,7 @@ class CLI
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
      end
-    def display_team_member(pokemon)
+     def display_team_member(pokemon)
         puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
         puts "╚═════════════════════════════╗"
         puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
