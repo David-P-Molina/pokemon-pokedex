@@ -1,8 +1,7 @@
 # PokemonPokedex
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pokemon_pokedex`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Pokemon_Pokedex, This gem highlights the original 151 Pokemon in CLI glory!
+When you start this gem you will be greeted by PROFESSOR OAK, He will aid you as you begin your POKEMON journey. Once you tell PROF OAK your name he will grant you access to the stats and description of POKEMON located in the KANTO region. You even have an chance to build your dream team. You can do this by selecting a pokemon, learning about their abilities, then adding them to your team. Don't worry if you mess up  you will have the opportunity to restart the process. Thank you for downloading this Ruby Gem! 
 
 ## Installation
 

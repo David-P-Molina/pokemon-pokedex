@@ -7,14 +7,14 @@ Gem::Specification.new do |spec|
   spec.email         = ["davemolina777@gmail.com"]
 
   spec.summary       = " Write a short summary, because RubyGems requires one.}"
-  spec.description   = " Write a longer description or delete this line.}"
+  spec.description   = " d.}"
   #spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
- # spec.metadata["homepage_uri"] = spec.homepage
+  # spec.metadata["homepage_uri"] = spec.homepage
   # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
