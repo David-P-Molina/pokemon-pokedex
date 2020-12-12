@@ -20,19 +20,15 @@ class Team
     end
     def self.clear
         @@all.clear
+        puts "       You released the pokemon into the wild!"
     end
     def list_team#method that lists out the team
         if self.all.length <= 5
             num = 6-self.all.length
             "You still have space for #{num} pokemon!Lets pick another one!"
         else
-            puts "Presenting Your dreamteam!"
-       # p "Current Team: " self.team.join(", ") #need to test and finalize? Should this go in cli class?
+            puts "Presenting Your dream Team!"
         end
-    end
-    def self.clear#method that clears the team
-        self.class.clear
-        puts "       You released the pokemon into the wild!"
     end
     def remove_last_pokemon
         @@team.pop
