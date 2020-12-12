@@ -154,10 +154,15 @@ class CLI
                puts "           It looks like you already have 6 POKEMON"
                puts "          POKEMON info has been added to the POKEDEX"
                puts "          This POKEMON has been transferred to Box 1"
+               line
                pokemon_display_options
          else 
                Team.save_pokemon_to_team(pokemon)
-               puts "This pokemon has been added to your team"
+               puts "          POKEMON info has been added to the POKEDEX"
+               puts "           This pokemon has been added to your team"
+               line
+               puts "Current Team"
+               team_list
                pokemon_display_options
      end
      def pokemon_display_options
