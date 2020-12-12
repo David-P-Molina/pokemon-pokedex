@@ -14,15 +14,15 @@ class API
     end
 
     #description
-    def self.pokemon_description(number) 
+    def self.pokemon_description(number)
         pokemon = Pokemon.find_by_number(number)
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}" 
         uri = URI.parse(url) 
         response = Net::HTTP.get_response(uri) 
-         response.body
-         description_list = JSON.parse(response.body)
-         pokemon.description = description_list['flavor_text_entries'][1]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
-         pokemon
+        response.body
+        description_list = JSON.parse(response.body)
+        pokemon.description = description_list['flavor_text_entries'][1]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
+        pokemon
      end
 
     #stat

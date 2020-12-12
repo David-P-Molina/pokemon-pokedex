@@ -47,11 +47,11 @@ class CLI
          puts "       A world of dreams and adventures with POKEMON awaits! Let's go!"
     end
     def ready_or_not
-         puts "                 #{name} Are you ready to begin? (yes or no)"
+         puts "                 #{name} Are you ready to begin? [yes or no]"
           input = gets.chomp.downcase
-          if input == "yes" || input == "y"
+          if input == "yes" || input == "y" || input == "[yes]" || input == "[y]"
                pokedex_list
-          elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
+          elsif input == "no" || input == "n" || input == "exit" || input == "exit!"|| input == "[no]" || input == "[n]"
                leaving
           else
                invalid_input
@@ -102,11 +102,11 @@ class CLI
      end
      #Input Options
      def list_options
-          puts "            To view a POKEMON type their POKEDEX number"
-          puts "                To see a shorter list type short list"
-          puts "                   To view your team type roster"
+          puts "              To view a POKEMON type their POKEDEX number"
+          puts "                 To see a shorter list type [short]"
+          puts "                   To view your team type [team]"
           input = gets.chomp.downcase
-          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
+          if input == "[short]" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
           else
                general_inputs(input)
@@ -116,9 +116,9 @@ class CLI
           puts "                               -All- Next-->" if count.between?(0,39)
           puts "                   <--Previous -All- Next-->" if count.between?(40,119)
           puts "                   <--Previous -All-" if count.between?(120,151)
-          puts "              To view a POKEMON type their POKEDEX number"
-          puts "                   To view your team type roster"
-          puts "                To navigate type Previous, Next or All"
+          puts "             To view a POKEMON type their POKEDEX number"
+          puts "                  To view your team type [team]"
+          puts "                To navigate [previous, next or all]"
           input = gets.chomp.downcase
           if input == "next" && self.count < 119 && self.count > 155
                self.count += 40 
@@ -136,13 +136,13 @@ class CLI
                retrieve_pokemon_and_display(input)
           elsif input.to_i > 151
                future_pokemon
-          elsif input == "exit" || input == "exit!"
+          elsif input == "exit" || input == "exit!"|| input == "[exit]"
                leaving
           elsif input == "pokedex" || input == "poke dex" || input == "all"
                pokedex_list
-          elsif input == "roster" || input == "team" || input == "squad" 
+          elsif input == "roster" || input == "team" || input == "[team]" 
                team_list
-          elsif input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
+          elsif input == "[short]" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"|| input == "[shorterlist]"
                short_pokedex_list 
           else
                invalid_input
@@ -171,26 +171,26 @@ class CLI
          end
      end
      def pokemon_display_options
-          puts "         If you would like to add this POKEMON to your team type add"
-          puts "                   To view your team type roster"
-          puts "             To look at other POKEMON type all or shorterlist"
+          puts "              To add this POKEMON to your team type [add]"
+          puts "                   To view your team type [team]"
+          puts "             To look at other POKEMON type [all] or [shorterlist]"
           input = gets.chomp.downcase
-          if input == "add" || input == "+" || input == "add pokemon" || input == "yes" 
+          if input == "add" || input == "+" || input == "[add]" || input == "yes" 
                team_limiter_and_adder
           else
                general_inputs(input)
           end
      end
      def team_display_options
-          puts "       Want to make changes to your team? Type clear to start over. "
-          puts "              Or to remove last pokemon added type Remove"
-          puts "             To look at other POKEMON type all or shorterlist"
+          puts "               Need to reset your entire team? Type [clear]. "
+          puts "              Or to remove last pokemon added type [remove]"
+          puts "             To look at other POKEMON type [all] or [shortlist]"
           puts "                    To start your journey type exit. "
           input = gets.chomp.downcase
-          if input == "clear" || input == "remove all" || input == "remove all pokemon"
+          if input == "clear" || input == "remove all" || input == "remove all pokemon" || input == "[clear]"
                Team.all.clear
                team_comment
-          elsif input == "last" || input == "remove" || input == "undo" || input == "back"
+          elsif input == "last" || input == "remove" || input == "undo" || input == "[remove]"
                Team.all.pop
                puts "         You have removed a POKEMON from your team. "
                team_list
