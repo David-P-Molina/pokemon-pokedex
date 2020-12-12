@@ -208,9 +208,11 @@ class CLI
       end
       def leaving
           if Team.all.length > 0
+               team = Team.all
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
-               line
+               puts"  Your Team:"
+                         team.each {|pokemon| print "#{pokemon.name.capitalize} "}
                exit 
           else
                puts "            We are sad to see you go! Please come again soon!"
@@ -245,23 +247,23 @@ class CLI
      def pokedex_display_card(pokemon)
           puts ""
           puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
-          puts "  ╚═TYPE:#{pokemon.type}"
-          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
+          puts "  ╚═TYPE:#{pokemon.type.capitalize}"
+          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════>"
           puts "    DESCRIPTION:  #{pokemon.description}."
-          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-          puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
-          puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "  ╚═════════════"
+          puts "  ╚═>HP: #{pokemon.hp}  SPEED: #{pokemon.speed}  ATTACK: #{pokemon.attack}  SPC. ATTACK #{pokemon.spc_attack}"
+          puts "  ╚═>DEFENSE:#{pokemon.defense}  SPC. DEFENSE #{pokemon.spc_defense}  HT: #{pokemon.height}   WT: #{pokemon.weight}"
           puts " "
      end
      def display_team_member(pokemon)
         puts ""
-        puts " ╚═##{pokemon.number}| #{pokemon.name.capitalize}|"
-        puts "HT: #{pokemon.height}   WT: #{pokemon.weight}"
+        puts " ╚═># #{pokemon.number}| #{pokemon.name.capitalize}"
+        puts "   HT: #{pokemon.height}   WT: #{pokemon.weight}"
         puts " ╚═════════════════════════════╗"
-        puts " ╚═TYPE:#{pokemon.type}|   HP: #{pokemon.hp}"
+        puts " ╚═>TYPE:#{pokemon.type.capitalize}|"
         puts " ╚═════════════════════════════╗"
-        puts "  SPD: #{pokemon.speed}|| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|"
-        puts "  DEF:#{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}|"
+        puts "  SPD: #{pokemon.speed}| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|"
+        puts "  DEF: #{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}| HP: #{pokemon.hp}"
         line
     end
 end
