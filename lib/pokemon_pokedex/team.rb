@@ -1,12 +1,13 @@
 require "pry"
 class Team
     attr_accessor :pokemon
-    @@all = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
+    @@all = []
     def save
         self.class.all << self
     end
     def save_pokemon_to_team(pokemon)
-        @@all << pokemon
+        binding.pry
+        self.class.all << pokemon
     end
     def self.all
         @@all

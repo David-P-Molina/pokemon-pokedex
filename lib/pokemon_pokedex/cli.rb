@@ -31,8 +31,8 @@ class CLI
     end
     def user_greeting
          puts "                             Hello there!"
-         puts "                       Welcome to the KANTO POKEDEX"
-         puts "    & team builder! Yes you can pick up to 6 pokemon to help you on your journey!"
+         puts "             Welcome to the KANTO POKEDEX & Team Builder!"
+         puts "       Yes you can pick up to 6 pokemon to help you on your journey!"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts "   For some people POKEMON are pets. Others use them for fights. Here..."
@@ -80,7 +80,7 @@ class CLI
      def pokedex_list
           @pokemons = Pokemon.all
           pokemons.each do |pokemon|
-               puts pokemon.number.to_s + ". " + pokemon.name 
+               puts pokemon.number.to_s + ". " + pokemon.name.capitalize  
           end
           list_options
      end
@@ -88,7 +88,7 @@ class CLI
           @count ||= 0
           pokemons = Pokemon.all 
           pokemons[count..count+39].each do |pokemon|
-               puts pokemon.number.to_s + ". " + pokemon.name 
+               puts pokemon.number.to_s + ". " + pokemon.name.capitalize 
           end
           short_list_options
      end
@@ -114,21 +114,19 @@ class CLI
           end
      end
      def short_list_options
-          puts "                                -All- Next-->" if count.between?(0,39)
-          puts "                    <--Previous -All- Next-->" if count.between?(40,119)
-          puts "                    <--Previous -All-" if count.between?(120,151)
+          puts "                               -All- Next-->" if count.between?(0,39)
+          puts "                   <--Previous -All- Next-->" if count.between?(40,119)
+          puts "                   <--Previous -All-" if count.between?(120,151)
           puts "              To view a Pokemon type their Pokedex number"
           puts "                   To view your team type roster"
           puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
-          if input == "next" && self.count < 119 
+          if input == "next" && self.count < 119 && self.count > 155
                self.count += 40 
                short_pokedex_list
-          elsif input == "previous" && self.count > 39
+          elsif input == "previous" && self.count > 39 && self.count < 0
                self.count -= 40
                short_pokedex_list
-          elsif input == "all"
-               pokedex_list
           else
                general_inputs(input)
           end
@@ -141,7 +139,7 @@ class CLI
                future_pokemon
           elsif input == "exit" || input == "exit!"
                leaving
-          elsif input == "pokedex" || "poke dex"
+          elsif input == "pokedex" || input == "poke dex" || input == "all"
                pokedex_list
           elsif input == "roster" || input == "team" || input == "squad" 
                team_list
@@ -154,7 +152,7 @@ class CLI
      end
      def team_limiter_and_adder
          team = Team.all.length
-         if team >= 6
+         if team == 6
                puts "           It looks like you already have 6 POKEMON"
                puts "          POKEMON info has been added to the POKEDEX"
                puts "          This POKEMON has been transferred to Box 1"
@@ -168,6 +166,7 @@ class CLI
                puts "Current Team"
                team_list
                pokemon_display_options
+         end
      end
      def pokemon_display_options
           puts "         If you would like to add this POKEMON to your team type add"
@@ -233,21 +232,24 @@ class CLI
          elsif team == 6
                puts "                     All your spots are filled! "
                list_options
-           else
+          else
                general_inputs
+          end
      end
      #display options
      def pokedex_display_card(pokemon)
-          puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+          puts ""
+          puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
           puts "  ╚═TYPE:#{pokemon.type}"
           puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
           puts "  #{pokemon.description}."
           puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts " "
      end
      def display_team_member(pokemon)
-        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
         puts "╚═════════════════════════════╗"
         puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
         puts "╚═════════════════════════════╗"
