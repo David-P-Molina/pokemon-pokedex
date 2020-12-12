@@ -1,4 +1,3 @@
-require "pry"
 class CLI
      attr_reader :name, :pokemons, :pokemon, :teams
      attr_accessor :count
@@ -103,7 +102,7 @@ class CLI
      end
      #Input Options
      def list_options
-          puts "            To view a Pokemon type their Pokedex number"
+          puts "            To view a POKEMON type their POKEDEX number"
           puts "                To see a shorter list type short list"
           puts "                   To view your team type roster"
           input = gets.chomp.downcase
@@ -117,7 +116,7 @@ class CLI
           puts "                               -All- Next-->" if count.between?(0,39)
           puts "                   <--Previous -All- Next-->" if count.between?(40,119)
           puts "                   <--Previous -All-" if count.between?(120,151)
-          puts "              To view a Pokemon type their Pokedex number"
+          puts "              To view a POKEMON type their POKEDEX number"
           puts "                   To view your team type roster"
           puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
@@ -164,7 +163,7 @@ class CLI
 
 
                puts "          POKEMON info has been added to the POKEDEX"
-               puts "           This pokemon has been added to your team"
+               puts "           #{name} This pokemon has been added to your team"
                line
                puts " Current Team:"
                team_list
@@ -193,7 +192,7 @@ class CLI
                team_comment
           elsif input == "last" || input == "remove" || input == "undo" || input == "back"
                Team.all.pop
-               puts "         You have removed a pokemon from your team. "
+               puts "         You have removed a POKEMON from your team. "
                team_list
           else
                general_inputs(input)
@@ -209,7 +208,7 @@ class CLI
       end
       def leaving
           if Team.all.length > 0
-               puts"               You are ready to face any obstacle! "
+               puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your pokemon by your side!"
                line
                exit 
@@ -227,12 +226,12 @@ class CLI
      def team_comment
          team = Team.all.length
          if team == 0
-               puts "            It looks like you have no pokemon on your team!"
-               puts "              View a pokemon to add it to your roster!"
+               puts "            It looks like you have no POKEMON on your team!"
+               puts "              View a POKEMON to add it to your roster!"
                ready_or_not
          elsif team.between?(1,5)
                empty = 6 - team
-               puts "               You need #{empty} pokemon to complete your team!"
+               puts "               You need #{empty} POKEMON to complete your team!"
                team_display_options
          elsif team == 6
                puts "                     All your spots are filled! "
@@ -264,7 +263,3 @@ class CLI
     end
 end
 ##tty for columns
-
-#would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
-#Are you sure you want to set your pokemon free?
-#exit method 
