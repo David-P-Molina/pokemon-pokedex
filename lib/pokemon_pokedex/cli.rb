@@ -96,6 +96,7 @@ class CLI
      def list_options
           puts "            To view a Pokemon type their Pokedex number"
           puts "                To see a shorter list type short list"
+          #puts "                   To view your team type roster"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
@@ -108,6 +109,7 @@ class CLI
           puts "                    <--Previous -All- Next-->" if count.between?(40,119)
           puts "                    <--Previous -All-" if count.between?(120,151)
           puts "              To view a Pokemon type their Pokedex number"
+          #puts "                   To view your team type roster"
           puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if input == "next" && self.count < 119 
@@ -177,6 +179,17 @@ class CLI
           puts "         He was always fooling around too! Lets try one more time!"  
           line
      end
+     # def team_comment
+     #     team = Team.all.length
+     #     if team == 0
+     #           puts "            It looks like you have no pokemon on your team!"
+     #           puts "              View a pokemon to add it to your roster!"
+     #     elsif team.between?(1,5)
+     #           empty = 6 - team
+     #           puts "            You have #{empty} pokemon to complete your team!"
+     #     elsif team == 6
+     #           puts "            It looks like you have too many Pokemon..."
+     # end
      #display options
      def pokedex_display_card(pokemon)#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
           puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "

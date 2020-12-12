@@ -1,6 +1,6 @@
 require "pry"
 class Team
-    @@team = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
+    @@all = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
 
 #Stored in the array are user selected pokemon
     # def self.team_size#method that ensures there are only 6 spots filled
@@ -12,17 +12,17 @@ class Team
     #     end
     # end
     def save#method that adds to an array
-        self.class.team << self
+        self.class.all << self
     end
-    def self.team
-        @@team
+    def self.all
+        @@all
     end
     def self.clear
-        @@team.clear
+        @@all.clear
     end
     def list_team#method that lists out the team
-        if self.team.length <= 5
-            num = 6-self.team.length
+        if self.all.length <= 5
+            num = 6-self.all.length
             "You still have space for #{num} pokemon!Lets pick another one!"
         else
             puts "Presenting Your dreamteam!"
