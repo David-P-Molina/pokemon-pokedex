@@ -1,6 +1,6 @@
 require "pry"
 class CLI
-     attr_reader :name, :pokemons, :pokemon
+     attr_reader :name, :pokemons, :pokemon, :teams
      attr_accessor :count
      def start
         poke_logo
@@ -91,6 +91,13 @@ class CLI
                puts pokemon.number.to_s + ". " + pokemon.name 
           end
           short_list_options
+     end
+     def team_list
+          team = Team.all
+               team.each do |pokemon|
+                   display_team_member(pokemon)
+               end
+          team_comment
      end
      #Input Options
      def list_options
@@ -198,6 +205,8 @@ class CLI
      #           puts "            You have #{empty} pokemon to complete your team!"
      #     elsif team == 6
      #           puts "            It looks like you have too many Pokemon..."
+          #  else
+          #      general_inputs
      # end
      #display options
      def pokedex_display_card(pokemon)
@@ -209,12 +218,6 @@ class CLI
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
      end
-#      def display_all_members
-#           team = Team.all
-#           team.each do |pokemon|
-#                display_team_member(pokemon)
-#           end
-#      end
 #     def display_team_member(pokemon)
 #         puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
 #         puts "╚═════════════════════════════╗"
