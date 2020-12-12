@@ -132,6 +132,8 @@ class CLI
                future_pokemon
           elsif input == "exit" || input == "exit!"
                leaving
+          elsif input == "pokedex" || "poke dex"
+               pokedex_list
           #elsif input == "roster" || input == "team" || input == "squad" 
                #view_team
                invalid_input

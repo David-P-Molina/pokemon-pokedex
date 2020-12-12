@@ -14,6 +14,7 @@ class Team
     def save#method that adds to an array
         self.class.all << self
     end
+    
     def self.all
         @@all
     end
