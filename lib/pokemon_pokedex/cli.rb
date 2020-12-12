@@ -200,7 +200,7 @@ class CLI
      #           puts "            It looks like you have too many Pokemon..."
      # end
      #display options
-     def pokedex_display_card(pokemon)#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
+     def pokedex_display_card(pokemon)
           puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
           puts "  ╚═TYPE:#{pokemon.type}"
           puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
@@ -209,6 +209,19 @@ class CLI
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
      end
+     def display_all_members
+          team = Team.all
+          team.each do |pokemon|
+               display_team_member(pokemon)
+          end
+     end
+    def display_team_member(pokemon)
+        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+        puts "╚═════════════════════════════╗"
+        puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
+        puts "╚═════════════════════════════╗"
+        line
+    end
 end
 ##tty for columns
 
