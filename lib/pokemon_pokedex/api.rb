@@ -21,7 +21,6 @@ class API
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
-        binding.pry
          response.body
          description_list = JSON.parse(response.body)
          pokemon.description = description_list['flavor_text_entries'][0]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
@@ -52,7 +51,7 @@ class API
     def self.pokemon_stats(url)    
         parse_response = JSON.parse(self.select_stats(url))
         pokemon = Pokemon.find_by_url(url)
-        pokemon.height = "parse_response['height']"
+        pokemon.height = parse_response['height']
         pokemon.weight = parse_response['weight']
         pokemon.type = parse_response['types'][0]['type']['name']
         pokemon.hp = parse_response['stats'][0]['base_stat']

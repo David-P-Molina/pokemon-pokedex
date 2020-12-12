@@ -6,13 +6,13 @@ class Table
 
     end
     def display_team_member #accepts (number, name, type, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
-        puts "╚═POKEDEX ##{number}| #{name}  "
+        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
         puts "╚═════════════════════════════╗"
-        puts "╚═TYPE:#{type}"
-        puts "╚═HP: #{hp}    SPEED: #{speed}"
-        puts "╚═ATTACK: #{attack} SPC. ATTACK #{spc_attack}"
-        puts "╚═DEFENSE:#{defense} SPC. DEFENSE #{spc_defense}"
-        puts "╚═HT: #{height}   WT: #{weight}"
+        puts "╚═TYPE:#{pokemon.type}"
+        puts "╚═HP: #{pokemon.hp}    SPEED: #{pokemon.speed}"
+        puts "╚═ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+        puts "╚═DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense}"
+        puts "╚═HT: #{pokemon.height}   WT: #{pokemon.weight}"
         puts "╚═════════════════════════════╗"
     end
     #alternate display card

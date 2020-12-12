@@ -59,7 +59,6 @@ class CLI
           short_list_options
      end
      def retrieve_pokemon_info(input)
-          binding.pry
           puts " Loading Info..."
           @pokemon = @pokemons[input.to_i-1]
           stats = API.pokemon_stats(pokemon.url)
@@ -75,8 +74,9 @@ class CLI
           puts "           To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if (1..151) === input.to_i
+               pokemon = retrieve_pokemon_info(input)
                binding.pry
-               retrieve_pokemon_info(input)
+               pokedex_display_card(pokemon)
           elsif input == "all"               
                pokedex_list
           elsif input == "next" && self.count < 119 
@@ -147,10 +147,18 @@ class CLI
           puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
           puts "╚═TYPE:#{pokemon.type}"
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-          puts "#{pokemon.description}"
+          puts "#{pokemon.description}."
           puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-          puts "╚═HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
-          puts "╚═DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{stats.weight}"
+          puts "╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+          puts "╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "╚═>POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+          puts "╚═════════════════════════════╗"
+          puts "╚═>TYPE:#{pokemon.type}"
+          puts "╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed}"
+          puts "╚═>ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+          puts "╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense}"
+          puts "╚═>HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "╚═════════════════════════════╗"
           short_list_options
      end
 end
