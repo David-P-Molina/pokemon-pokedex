@@ -17,14 +17,15 @@ class API
     #description
     def self.pokemon_description(number) #description ##i should be set to Pokemon.number
         # number = Pokemon.find_by_number 
+        pokemon = Pokemon.find_by_number(number)
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}" #use string interpolation
         uri = URI.parse(url) #converts and parses out URL info
         response = Net::HTTP.get_response(uri) #uses builtin method to recieve a GET request that is a Net::HTTPOOK object
-        #binding.pry
+        binding.pry
          response.body
          description_list = JSON.parse(response.body)
-         description = description_list['flavor_text_entries'][0]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
-         description
+         pokemon.description = description_list['flavor_text_entries'][0]['flavor_text'].gsub(/[^A-Za-z]/, ' ') 
+         pokemon
      end
     # def self.select_description(number) #description ##i should be set to Pokemon.number
     #     # number = Pokemon.find_by_number 
