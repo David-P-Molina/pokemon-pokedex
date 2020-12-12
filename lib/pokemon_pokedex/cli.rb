@@ -149,7 +149,8 @@ class CLI
                invalid_input
                list_options
            end
-     end
+     end   
+     
      def team_limiter_and_adder
          team = Team.all.length
          if team == 6
