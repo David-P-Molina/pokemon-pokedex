@@ -14,7 +14,7 @@ class Team
     def save#method that adds to an array
         self.class.all << self
     end
-    
+
     def self.all
         @@all
     end
@@ -34,7 +34,7 @@ class Team
         self.class.clear
         puts "       You released the pokemon into the wild!"
     end
-    def remove_last_pokemon_added
+    def remove_last_pokemon
         @@team.pop
         list_team
     end

@@ -172,9 +172,16 @@ class CLI
           list_options
       end
       def leaving
+          # if Team.all.length > 0
+          #      puts"               You are ready to face any obstacle! "
+          #      puts"      Now embark on your journey with your pokemon by your side!"
+          #      line
+          #      exit 
+          # else
           puts "            We are sad to see you go! Please come again soon!"
           line
           exit 
+     #     end
       end
       def invalid_input
           puts "           You remind me of my grandson... I forget his name."
@@ -204,29 +211,7 @@ class CLI
      end
 end
 ##tty for columns
-#      def pokedex_or_team
-#          puts "  #{name} would you like to search the POKEDEX for a certain POKEMON? "
-#          puts "      Or are you ready to build a team? please choose (pokemon, team, or exit)"
-#          path = gets.chomp.downcase
-#          if path == "pokemon"|| path == "poke mon" || path == "poke'mon" || path == "pokémon" || path == "poké mon" || path == "poké'mon" || path == "pokèmon"|| path == "pokè mon" || path == "pokè'mon" || path == "1"
-#           pokedex_list
-#          elsif path == "team" || path == "pokemon team" || path == "pokemon team" || path == "2"
-#           team_builder
-#           puts "Lets start "
-#          elsif path == "or"
-#           puts "         I see you have a sense of humor. Lets try this again!"
-#           pokedex_or_team
-#          elsif path == "exit" || path == "exit!"
-#           exit
-#          else
-#           invalid_input
-#           pokedex_or_team
-#          end
-#     end
-#     def team_builder
-#          puts "                    Lets pick your team!"
-#     end
+
 #would you like to add this pokemon to your team?(Yes,No(I'll Keep looking))
-#are you ready to start building your team?
 #Are you sure you want to set your pokemon free?
-#exit method "You are ready to face any obstacle! Now embark on your journey with your pokemon by your side!"
+#exit method 
