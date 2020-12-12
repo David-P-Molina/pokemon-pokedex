@@ -11,19 +11,19 @@ class CLI
     end
     def user_greeting
          puts "                             Hello there!"
-         puts "                      Welcome to the Kanto Pokedex"
+         puts "                       Welcome to the Kanto Pokedex"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
-         puts " For some people POKEMON are pets. Others use them for fights. Here..."
-         puts "                 Here we study POKEMON as a profession."
+         puts "   For some people POKEMON are pets. Others use them for fights. Here..."
+         puts "                   Here we study POKEMON as a profession."
      end
      def user_name
-         puts "                      First, what is your name?"
+         puts "                       First, what is your name?"
          @name = gets.chomp.upcase
          line
-         puts "                   Right! so your name is #{name}!"
-         puts "        #{name} Your very own POKEMON legend is about to unfold!"
-         puts "        A world of dreams and adventures with POKEMON awaits! Let's go!"
+         puts "                     Right! so your name is #{name}!"
+         puts "         #{name} Your very own POKEMON legend is about to unfold!"
+         puts "       A world of dreams and adventures with POKEMON awaits! Let's go!"
     end
     def ready_or_not
          puts "                 #{name} Are you ready to begin? (yes or no)"
@@ -32,8 +32,7 @@ class CLI
                retrieve_roster
                pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
-               puts "              We are sad to see you go! Please come again soon!"
-               exit 
+               leaving
           else
                invalid_input
                ready_or_not
@@ -65,9 +64,19 @@ class CLI
           end
           short_list_options
      end
+     def pokemon_display_options
+          puts "             To navigate back to pokedex type all or shorterlist"
+          input = gets.chomp.downcase
+          if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
+               short_pokedex_list 
+          else
+               general_inputs(input)
+          end
+     end
      def retrieve_pokemon_and_display(input)
           pokemon = retrieve_pokemon_info(input)
           pokedex_display_card(pokemon)
+          pokemon_display_options
      end
      def short_list_options
           puts "                                -All- Next-->" if count.between?(0,39)
@@ -76,57 +85,55 @@ class CLI
           puts "              To view a Pokemon type their Pokedex number"
           puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
-          if (1..151) === input.to_i
-               retrieve_pokemon_and_display(input)
-          elsif input == "all"               
-               pokedex_list
-          elsif input == "next" && self.count < 119 
+          if input == "next" && self.count < 119 
                self.count += 40 
                short_pokedex_list
           elsif input == "previous" && self.count > 39
                self.count -= 40
                short_pokedex_list
+          elsif input == "all"
+               pokedex_list
+          else
+               general_inputs(input)
+          end
+     end
+     def general_inputs(input)
+          input
+          if (1..151) === input.to_i
+               retrieve_pokemon_and_display(input)
           elsif input.to_i > 151
                future_pokemon
           elsif input == "exit" || input == "exit!"
-               puts "         We are sad to see you go! Please come again soon!"
-               exit 
+               leaving
           else
                invalid_input
-               short_pokedex_list
-          end
+               list_options
      end
-
+     end
       def list_options
           puts "            To view a Pokemon type their Pokedex number"
           puts "                To see a shorter list type short list"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
-          elsif (1..151) === input.to_i
-               retrieve_pokemon_and_display(input)
-          elsif input.to_i > 151
-               future_pokemon
-          elsif input == "exit" || input == "exit!"
-               puts "               We are sad to see you go! Please come again soon!"
-               line
-               exit 
           else
-               invalid_input
-               list_options
+               general_inputs(input)
           end
       end
       def future_pokemon
           puts "               Woah it looks like you are looking!"
           puts "           for a Pokemon that has yet to be discovered!"
+          line
           list_options
       end
       def leaving
-          
+          puts "            We are sad to see you go! Please come again soon!"
+          line
+          exit 
       end
       def invalid_input
-          puts "        You remind me of my grandson... I forget his name."
-          puts "     He was always fooling around too! Lets try one more time!"  
+          puts "           You remind me of my grandson... I forget his name."
+          puts "         He was always fooling around too! Lets try one more time!"  
           line
      end
      def poke_logo #Source https://ascii.co.uk/art/pokemon
@@ -165,7 +172,6 @@ class CLI
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense}"
           puts "  ╚═>HT: #{pokemon.height}   WT: #{pokemon.weight}"
           puts "  ╚═════════════════════════════╗"
-          short_list_options
      end
 end
 ##tty for columns
