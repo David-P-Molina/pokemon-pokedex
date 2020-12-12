@@ -40,8 +40,15 @@ class CLI
           end
      end
      def retrieve_roster
-          @pokemons = API.pokemon_roster #array of pokemonobjects
+          @pokemons = API.pokemon_roster
           @pokemons
+     end
+     def retrieve_pokemon_info(input)
+          puts " Loading Info..."
+          @pokemon = @pokemons[input.to_i-1]
+          stats = API.pokemon_stats(pokemon.url)
+          description = API.pokemon_description(pokemon.number)
+          pokemon
      end
      def pokedex_list
           @pokemons = Pokemon.all
@@ -58,25 +65,19 @@ class CLI
           end
           short_list_options
      end
-     def retrieve_pokemon_info(input)
-          puts " Loading Info..."
-          @pokemon = @pokemons[input.to_i-1]
-          stats = API.pokemon_stats(pokemon.url)
-          description = API.pokemon_description(pokemon.number)
-          pokemon# display card better
-          #trigger display herestats.pokedex_display_card
+     def retrieve_pokemon_and_display(input)
+          pokemon = retrieve_pokemon_info(input)
+          pokedex_display_card(pokemon)
      end
      def short_list_options
-          puts "                       -All- Next-->" if count.between?(0,39)
-          puts "           <--Previous -All- Next-->" if count.between?(40,119)
-          puts "           <--Previous -All-" if count.between?(120,151)
-          puts "           To view a Pokemon type their Pokedex number"
-          puts "           To navigate type Previous, Next or All"
+          puts "                                -All- Next-->" if count.between?(0,39)
+          puts "                    <--Previous -All- Next-->" if count.between?(40,119)
+          puts "                    <--Previous -All-" if count.between?(120,151)
+          puts "              To view a Pokemon type their Pokedex number"
+          puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if (1..151) === input.to_i
-               pokemon = retrieve_pokemon_info(input)
-               binding.pry
-               pokedex_display_card(pokemon)
+               retrieve_pokemon_and_display(input)
           elsif input == "all"               
                pokedex_list
           elsif input == "next" && self.count < 119 
@@ -86,10 +87,9 @@ class CLI
                self.count -= 40
                short_pokedex_list
           elsif input.to_i > 151
-               puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
-               list_options
+               future_pokemon
           elsif input == "exit" || input == "exit!"
-               puts "               We are sad to see you go! Please come again soon!"
+               puts "         We are sad to see you go! Please come again soon!"
                exit 
           else
                invalid_input
@@ -98,16 +98,15 @@ class CLI
      end
 
       def list_options
-          puts "           To view a Pokemon type their Pokedex number"
-          puts "             To see a shorter list type short list"
+          puts "            To view a Pokemon type their Pokedex number"
+          puts "                To see a shorter list type short list"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
-               short_pokedex_list ##Build this method
+               short_pokedex_list 
           elsif (1..151) === input.to_i
-               retrieve_pokemon_info(input)
+               retrieve_pokemon_and_display(input)
           elsif input.to_i > 151
-               puts "Woah it looks like you are looking for a Pokemon that has yet to be discovered!"
-               list_options
+               future_pokemon
           elsif input == "exit" || input == "exit!"
                puts "               We are sad to see you go! Please come again soon!"
                line
@@ -117,7 +116,14 @@ class CLI
                list_options
           end
       end
-
+      def future_pokemon
+          puts "               Woah it looks like you are looking!"
+          puts "           for a Pokemon that has yet to be discovered!"
+          list_options
+      end
+      def leaving
+          
+      end
       def invalid_input
           puts "        You remind me of my grandson... I forget his name."
           puts "     He was always fooling around too! Lets try one more time!"  
@@ -144,21 +150,21 @@ class CLI
           puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
      end
      def pokedex_display_card(pokemon)#accepts (number, name, type, description, hp, speed, attack, spc_attack, defense, spc_defense, height, weight)
-          puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
-          puts "╚═TYPE:#{pokemon.type}"
-          puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-          puts "#{pokemon.description}."
-          puts "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-          puts "╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
-          puts "╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
-          puts "╚═>POKEDEX ##{pokemon.number}| #{pokemon.name}  "
-          puts "╚═════════════════════════════╗"
-          puts "╚═>TYPE:#{pokemon.type}"
-          puts "╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed}"
-          puts "╚═>ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
-          puts "╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense}"
-          puts "╚═>HT: #{pokemon.height}   WT: #{pokemon.weight}"
-          puts "╚═════════════════════════════╗"
+          puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+          puts "  ╚═TYPE:#{pokemon.type}"
+          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
+          puts "  #{pokemon.description}."
+          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
+          puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+          puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "  ╚═>POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+          puts "  ╚═════════════════════════════╗"
+          puts "  ╚═>TYPE:#{pokemon.type}"
+          puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed}"
+          puts "  ╚═>ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
+          puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense}"
+          puts "  ╚═>HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "  ╚═════════════════════════════╗"
           short_list_options
      end
 end
