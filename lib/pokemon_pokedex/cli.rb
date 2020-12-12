@@ -32,7 +32,7 @@ class CLI
     def user_greeting
          puts "                             Hello there!"
          puts "                       Welcome to the KANTO POKEDEX"
-         #puts "    & team builder! Yes you can pick up to 6 pokemon to help you on your journey!"
+         puts "    & team builder! Yes you can pick up to 6 pokemon to help you on your journey!"
          puts "            My name is OAK! People call me the POKEMON PROF! "
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts "   For some people POKEMON are pets. Others use them for fights. Here..."
@@ -103,7 +103,7 @@ class CLI
      def list_options
           puts "            To view a Pokemon type their Pokedex number"
           puts "                To see a shorter list type short list"
-          #puts "                   To view your team type roster"
+          puts "                   To view your team type roster"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
@@ -116,7 +116,7 @@ class CLI
           puts "                    <--Previous -All- Next-->" if count.between?(40,119)
           puts "                    <--Previous -All-" if count.between?(120,151)
           puts "              To view a Pokemon type their Pokedex number"
-          #puts "                   To view your team type roster"
+          puts "                   To view your team type roster"
           puts "                To navigate type Previous, Next or All"
           input = gets.chomp.downcase
           if input == "next" && self.count < 119 
@@ -183,35 +183,35 @@ class CLI
           list_options
       end
       def leaving
-          # if Team.all.length > 0
-          #      puts"               You are ready to face any obstacle! "
-          #      puts"      Now embark on your journey with your pokemon by your side!"
-          #      line
-          #      exit 
-          # else
-          puts "            We are sad to see you go! Please come again soon!"
-          line
-          exit 
-     #     end
+          if Team.all.length > 0
+               puts"               You are ready to face any obstacle! "
+               puts"      Now embark on your journey with your pokemon by your side!"
+               line
+               exit 
+          else
+               puts "            We are sad to see you go! Please come again soon!"
+               line
+               exit 
+          end
       end
       def invalid_input
           puts "           You remind me of my grandson... I forget his name."
           puts "         He was always fooling around too! Lets try one more time!"  
           line
      end
-     # def team_comment
-     #     team = Team.all.length
-     #     if team == 0
-     #           puts "            It looks like you have no pokemon on your team!"
-     #           puts "              View a pokemon to add it to your roster!"
-     #     elsif team.between?(1,5)
-     #           empty = 6 - team
-     #           puts "            You have #{empty} pokemon to complete your team!"
-     #     elsif team == 6
-     #           puts "            It looks like you have too many Pokemon..."
-          #  else
-          #      general_inputs
-     # end
+     def team_comment
+         team = Team.all.length
+         if team == 0
+               puts "            It looks like you have no pokemon on your team!"
+               puts "              View a pokemon to add it to your roster!"
+         elsif team.between?(1,5)
+               empty = 6 - team
+               puts "            You have #{empty} pokemon to complete your team!"
+         elsif team == 6
+               puts "            It looks like you have too many Pokemon..."
+           else
+               general_inputs
+     end
      #display options
      def pokedex_display_card(pokemon)
           puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
@@ -222,13 +222,13 @@ class CLI
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
      end
-#     def display_team_member(pokemon)
-#         puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
-#         puts "╚═════════════════════════════╗"
-#         puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
-#         puts "╚═════════════════════════════╗"
-#         line
-#     end
+    def display_team_member(pokemon)
+        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name}  "
+        puts "╚═════════════════════════════╗"
+        puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
+        puts "╚═════════════════════════════╗"
+        line
+    end
 end
 ##tty for columns
 
