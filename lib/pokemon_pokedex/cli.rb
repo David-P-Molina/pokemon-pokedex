@@ -130,19 +130,32 @@ class CLI
                future_pokemon
           elsif input == "exit" || input == "exit!"
                leaving
-          else
+          #elsif input == "roster" || input == "team" || input == "squad" 
+               #view_team
                invalid_input
                list_options
            end
      end
      def pokemon_display_options
-          #puts "         If you would like to add this pokemon to your team type add"
+          #puts "         If you would like to add this pokemon to your squad type add"
+          #puts "                   To view your team type roster"
           puts "             To look at other pokemon type all or shorterlist"
           input = gets.chomp.downcase
           if input == "shortlist" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
           #elsif input == "add" || input == "+" || input == "add pokemon" || input == "yes" 
-
+               #sends to method that checks if self.team.length <= 5 
+                    #if less than 6 uses method that stores pokemon in team.all
+                    # puts "This pokemon has been added to your team"
+               #method that asks if you would like to view your team?
+               #pokemon_display_options
+                    #if 6 or more 
+                    # puts "         It looks like you already have 6 pokemon"
+                    # puts "          This pokemon has been transferred to Box 1"
+                #method that asks if you would like to view your team?
+                #pokemon_display_options
+          #elsif input == "roster" || input == "team" || input == "squad" 
+               #display pokemon team in display card andsaved
           else
                general_inputs(input)
           end
