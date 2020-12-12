@@ -37,6 +37,7 @@ class CLI
          puts "         This world is inhabited by creatures called POKEMON!!"
          puts "   For some people POKEMON are pets. Others use them for fights. Here..."
          puts "                   Here we study POKEMON as a profession."
+         retrieve_roster
      end
      def user_name
          puts "                       First, what is your name?"
@@ -50,7 +51,6 @@ class CLI
          puts "                 #{name} Are you ready to begin? (yes or no)"
           input = gets.chomp.downcase
           if input == "yes" || input == "y"
-               retrieve_roster
                pokedex_list
           elsif input == "no" || input == "n" || input == "exit" || input == "exit!"
                leaving
@@ -150,7 +150,7 @@ class CLI
                list_options
            end
      end   
-     
+
      def team_limiter_and_adder
          team = Team.all.length
          if team == 6
@@ -158,13 +158,15 @@ class CLI
                puts "          POKEMON info has been added to the POKEDEX"
                puts "          This POKEMON has been transferred to Box 1"
                line
-               pokemon_display_options
+               team_display_options
          else 
-               Team.save_pokemon_to_team(pokemon)
+               Team.all << pokemon
+
+
                puts "          POKEMON info has been added to the POKEDEX"
                puts "           This pokemon has been added to your team"
                line
-               puts "Current Team"
+               puts " Current Team:"
                team_list
                pokemon_display_options
          end
@@ -187,9 +189,11 @@ class CLI
           puts "                    To start your journey type exit. "
           input = gets.chomp.downcase
           if input == "clear" || input == "remove all" || input == "remove all pokemon"
+               Team.all.clear
                team_comment
           elsif input == "last" || input == "remove" || input == "undo" || input == "back"
-               Team.remove_last_pokemon
+               Team.all.pop
+               puts "         You have removed a pokemon from your team. "
                team_list
           else
                general_inputs(input)
@@ -228,11 +232,12 @@ class CLI
                ready_or_not
          elsif team.between?(1,5)
                empty = 6 - team
-               puts "            You have #{empty} pokemon to complete your team!"
-               list_options
+               puts "               You need #{empty} pokemon to complete your team!"
+               team_display_options
          elsif team == 6
                puts "                     All your spots are filled! "
-               list_options
+               puts ""
+               team_display_options
           else
                general_inputs
           end
@@ -243,17 +248,18 @@ class CLI
           puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
           puts "  ╚═TYPE:#{pokemon.type}"
           puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-          puts "  #{pokemon.description}."
+          puts "    DESCRIPTION:  #{pokemon.description}."
           puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
           puts "  ╚═>HP: #{pokemon.hp}    SPEED: #{pokemon.speed} ATTACK: #{pokemon.attack} SPC. ATTACK #{pokemon.spc_attack}"
           puts "  ╚═>DEFENSE:#{pokemon.defense} SPC. DEFENSE #{pokemon.spc_defense} HT: #{pokemon.height}   WT: #{pokemon.weight}"
           puts " "
      end
      def display_team_member(pokemon)
-        puts "╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
-        puts "╚═════════════════════════════╗"
-        puts "╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
-        puts "╚═════════════════════════════╗"
+        puts ""
+        puts "           ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
+        puts "           ╚═════════════════════════════╗"
+        puts "           ╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
+        puts "           ╚═════════════════════════════╗"
         line
     end
 end
