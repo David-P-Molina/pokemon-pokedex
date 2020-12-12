@@ -1,7 +1,8 @@
 require "pry"
 class Team
+    attr_accessor :pokemon
     @@all = ["Charizard", "Gengar", "Nidoking", "Alakazam", "Seadra", "Marowak"]
-    def save#method that adds to an array
+    def save
         self.class.all << self
     end
     def save_pokemon_to_team(pokemon)
@@ -23,8 +24,8 @@ class Team
     #     end
     # end
     def remove_last_pokemon
-        @@team.pop
-        list_team
+        @@all.pop
+        @@all
     end
 end
 
