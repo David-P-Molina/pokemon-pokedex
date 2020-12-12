@@ -209,7 +209,7 @@ class CLI
       def leaving
           if Team.all.length > 0
                puts"               #{name}, You are ready to face any obstacle! "
-               puts"      Now embark on your journey with your pokemon by your side!"
+               puts"      Now embark on your journey with your Pokemon by your side!"
                line
                exit 
           else
@@ -255,10 +255,13 @@ class CLI
      end
      def display_team_member(pokemon)
         puts ""
-        puts "           ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
-        puts "           ╚═════════════════════════════╗"
-        puts "           ╚═TYPE:#{pokemon.type}   HP: #{pokemon.hp}"
-        puts "           ╚═════════════════════════════╗"
+        puts " ╚═##{pokemon.number}| #{pokemon.name.capitalize}|"
+        puts "HT: #{pokemon.height}   WT: #{pokemon.weight}"
+        puts " ╚═════════════════════════════╗"
+        puts " ╚═TYPE:#{pokemon.type}|   HP: #{pokemon.hp}"
+        puts " ╚═════════════════════════════╗"
+        puts "  SPD: #{pokemon.speed}|| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|"
+        puts "  DEF:#{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}|"
         line
     end
 end
