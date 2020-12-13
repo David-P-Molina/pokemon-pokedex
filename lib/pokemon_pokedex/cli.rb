@@ -216,7 +216,7 @@ class CLI
                retrieve_team_names
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
-               puts"         Presenting your Dream Team!═══>    #{team_names.join("  ")}"
+               puts"   Presenting your Dream Team!═══>    #{retrieve_team_names.join("  ")}"
                exit 
           else
                puts "            We are sad to see you go! Please come again soon!"
