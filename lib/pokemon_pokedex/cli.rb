@@ -125,10 +125,10 @@ class CLI
           puts "                  To view your team type [team]"
           puts "                To navigate [previous, next or all]"
           input = gets.chomp.downcase
-          if input == "next" && self.count < 119 && self.count > 155
+          if input == "next" && self.count < 119 
                self.count += 40 
                short_pokedex_list
-          elsif input == "previous" && self.count > 39 && self.count < 0
+          elsif input == "previous" && self.count > 39 
                self.count -= 40
                short_pokedex_list
           else
