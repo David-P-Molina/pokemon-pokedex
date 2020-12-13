@@ -35,9 +35,8 @@ class Pokemon
         pokemon.save
         pokemon
     end
-    def self.find_by_number(number) #connect and use number and string interpolate it into url to search for info
+    def self.find_by_number(number) 
         all.detect{|poke| poke.number == number}
-        #pokemon.number
     end
     def self.find_by_url(url) 
         all.detect{|poke| poke.url == url}
