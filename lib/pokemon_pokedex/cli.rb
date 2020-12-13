@@ -75,6 +75,11 @@ class CLI
           pokedex_display_card(pokemon)
           pokemon_display_options
      end
+     def retrieve_team_names
+          team = Team.all
+          team_names = team.collect {|pokemon| pokemon.name.capitalize}
+          team_names
+     end
      #pokedex lists
      def pokedex_list
           @pokemons = Pokemon.all
@@ -182,9 +187,9 @@ class CLI
           end
      end
      def team_display_options
-          puts "               Need to reset your entire team? Type [clear]. "
+          puts "               Need to reset your entire team? Type [clear]"
           puts "              Or to remove last pokemon added type [remove]"
-          puts "             To look at other POKEMON type [all] or [shortlist]"
+          puts "           To look at other POKEMON type [all] or [shortlist]"
           puts "                    To start your journey type exit. "
           input = gets.chomp.downcase
           if input == "clear" || input == "remove all" || input == "remove all pokemon" || input == "[clear]"
@@ -208,11 +213,10 @@ class CLI
       end
       def leaving
           if Team.all.length > 0
-               team = Team.all
+               retrieve_team_names
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
-               puts"  Your Team:"
-                         team.each {|pokemon| print "#{pokemon.name.capitalize} "}
+               puts"         Presenting your Dream Team!═══>    #{team_names.join("  ")}"
                exit 
           else
                puts "            We are sad to see you go! Please come again soon!"
@@ -236,7 +240,7 @@ class CLI
                puts "               You need #{empty} POKEMON to complete your team!"
                team_display_options
          elsif team == 6
-               puts "                     All your spots are filled! "
+               puts "                       All your spots are filled! "
                puts ""
                team_display_options
           else
