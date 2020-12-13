@@ -7,9 +7,7 @@ When you start this gem you will be greeted by PROFESSOR OAK, He will aid you as
 
 Add this line to your application's Gemfile:
 
-```ruby
 gem 'pokemon_pokedex'
-```
 
 And then execute:
 
@@ -20,18 +18,13 @@ Or install it yourself as:
     $ gem install pokemon_pokedex
 
 ## Usage
+Launch the gem file while in the main Pokemon_Pokedex Folder and type "./bin/start"
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Follow the username prompt and accept your Pokemon Quest. Type in keywords and numbers to navigate through the pokedex to view a pokemon's stats and description. You will also have the option to add a pokemon to your team. As with most Pokemon games you are allotted 6 spots to fill with any pokemon. If you attempt to exceed this number you will be asked to start over or remove a pokemon from your team. You can view your roster at any time. Once you are finished you are returned a list of the pokemon you selected. Enjoy!
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pokemon_pokedex. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/pokemon_pokedex/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/David-P-Molina/pokemon_pokedex. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/David-P-Molina/pokemon_pokedex/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
