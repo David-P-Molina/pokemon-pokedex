@@ -8,8 +8,8 @@ class CLI
         line
         user_name
         ready_or_not
-    end
-    def poke_logo #Source https://ascii.co.uk/art/pokemon
+     end
+     def poke_logo #Source https://ascii.co.uk/art/pokemon
          puts "╔══════════════════════════════════════════════════════════════════════╗"
          puts "║                                        .::.                          ║"
          puts "║                                      .;:**'                          ║"           
@@ -25,11 +25,14 @@ class CLI
          puts "║          'MMM.         The Original 151 Pokemon            IMX       ║"
          puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║"
          puts "╚══════════════════════════════════════════════════════════════════════╝"
-    end
-    def line
+     end
+     def line
          puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
-    end
-    def user_greeting
+     end
+     def line_team
+         puts " _-_+_-_+_-_+_-_+_-_+_-_+_-_+_-_+_-_"
+     end
+     def user_greeting
          puts "                             Hello there!"
          puts "             Welcome to the KANTO POKEDEX & Team Builder!"
          puts "       Yes you can pick up to 6 pokemon to help you on your journey!"
@@ -66,10 +69,9 @@ class CLI
      #retrievers
      def retrieve_roster
           @pokemons = API.pokemon_roster
- #         @pokemons
      end
      def retrieve_pokemon_info(input)
-          puts " Loading Info..."
+          puts " Loading Info......"
           @pokemon = @pokemons[input.to_i-1]
           stats = API.pokemon_stats(pokemon.url)
           description = API.pokemon_description(pokemon.number)
@@ -94,8 +96,7 @@ class CLI
           list_options
      end
      def short_pokedex_list 
-          @count ||= 0
-          #pokemons = Pokemon.all 
+          @count ||= 0 
           pokemons[count..count+39].each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name.capitalize 
           end
@@ -181,9 +182,9 @@ class CLI
          end
      end
      def pokemon_display_options
-          puts "              To add this POKEMON to your team type [add]"
-          puts "                   To view your team type [team]"
-          puts "             To look at other POKEMON type [all] or [shorterlist]"
+          puts "             To add this POKEMON to your team type [add]"
+          puts "                    To view your team type [team]"
+          puts "           To look at other POKEMON type [all] or [shorterlist]"
           input = gets.chomp.downcase
           if input == "add" || input == "+" || input == "[add]" || input == "yes" 
                team_limiter_and_adder
@@ -201,8 +202,6 @@ class CLI
                Team.all.first.pokemons.each {|poke| poke.team = nil}
                team_comment
           elsif input == "last" || input == "remove" || input == "undo" || input == "[remove]"
-               # pokemon = Team.all.first.pokemons.detect {|poke| poke.number == }
-                #pokemon.team = nil
                 pokemon_log.last.team = nil
                 pokemon_log.pop
                puts "         You have removed a POKEMON from your team. "
@@ -225,6 +224,8 @@ class CLI
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
                puts"   Presenting your Dream Team!═══>    #{retrieve_team_names.join("  ")}"
+               puts ""
+               line
                exit 
           else
                puts "            We are sad to see you go! Please come again soon!"
@@ -276,7 +277,6 @@ class CLI
         puts " ╚═════════════════════════════╗"
         puts "  SPD: #{pokemon.speed}| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|"
         puts "  DEF: #{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}| HP: #{pokemon.hp}"
-        line
+        line_team
     end
 end
-##tty for columns
