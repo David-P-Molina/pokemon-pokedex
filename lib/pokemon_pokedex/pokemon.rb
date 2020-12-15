@@ -1,8 +1,8 @@
 require "pry"
 class Pokemon
     @@all = []
-    attr_accessor :name, :url, :number, :description, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed
-    def initialize(name, url)
+    attr_accessor :name, :url, :number, :description, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed, :team
+    def initialize(name, url, number = nil, description = nil, height = nil, weight = nil, type = nil, hp = nil, attacl =nil, defense = nil, spc_attack = nil, spc_defense = nil, speed = nil, team = nil)
         @name = name
         @url = url
         @number = @@all.length + 1
@@ -16,8 +16,7 @@ class Pokemon
         @spc_attack = spc_attack
         @spc_defense = spc_defense
         @speed = speed
-
-
+        @team = team
         save
     end
     def save

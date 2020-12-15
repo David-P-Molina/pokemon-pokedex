@@ -1,7 +1,14 @@
 require "pry"
 class Team
-    attr_accessor :pokemon
     @@all = []
+    def initialize
+        save
+    end
+    
+    def pokemons
+        Pokemon.all.select {|pokemon| pokemon.team == self}
+    end
+
     def save
         self.class.all << self
     end
@@ -11,6 +18,6 @@ class Team
     end
     
     def self.clear
-        @@all.clear
+        self.all.clear
     end
 end

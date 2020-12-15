@@ -1,8 +1,9 @@
 class CLI
-     attr_reader :name, :pokemons, :pokemon, :teams
+     attr_reader :name, :pokemons, :pokemon, :teams, :pokemon_log
      attr_accessor :count
      def start
         poke_logo
+        create_variables
         user_greeting
         line
         user_name
@@ -38,6 +39,10 @@ class CLI
          puts "                   Here we study POKEMON as a profession."
          retrieve_roster
      end
+     def create_variables
+          @team = Team.new
+          @pokemon_log = []
+     end
      def user_name
          puts "                       First, what is your name?"
          @name = gets.chomp.upcase
@@ -61,7 +66,7 @@ class CLI
      #retrievers
      def retrieve_roster
           @pokemons = API.pokemon_roster
-          @pokemons
+ #         @pokemons
      end
      def retrieve_pokemon_info(input)
           puts " Loading Info..."
@@ -76,8 +81,8 @@ class CLI
           pokemon_display_options
      end
      def retrieve_team_names
-          team = Team.all
-          team_names = team.collect {|pokemon| pokemon.name.capitalize}
+          team = Team.all.first
+          team_names = team.pokemons.collect {|pokemon| pokemon.name.capitalize}
           team_names
      end
      #pokedex lists
@@ -90,15 +95,15 @@ class CLI
      end
      def short_pokedex_list 
           @count ||= 0
-          pokemons = Pokemon.all 
+          #pokemons = Pokemon.all 
           pokemons[count..count+39].each do |pokemon|
                puts pokemon.number.to_s + ". " + pokemon.name.capitalize 
           end
           short_list_options
      end
      def team_list
-          team = Team.all
-               team.each do |pokemon|
+          team = Team.all.first
+               team.pokemons.each do |pokemon|
                    display_team_member(pokemon)
                end
           team_comment
@@ -156,7 +161,7 @@ class CLI
      end   
 
      def team_limiter_and_adder
-         team = Team.all.length
+         team = Team.all.first.pokemons.length
          if team == 6
                puts "           It looks like you already have 6 POKEMON"
                puts "          POKEMON info has been added to the POKEDEX"
@@ -164,8 +169,8 @@ class CLI
                line
                team_display_options
          else 
-               Team.all << pokemon
-
+               pokemon.team = Team.all.first
+               pokemon_log << pokemon
 
                puts "          POKEMON info has been added to the POKEDEX"
                puts "           #{name} This pokemon has been added to your team"
@@ -193,10 +198,13 @@ class CLI
           puts "                    To start your journey type exit. "
           input = gets.chomp.downcase
           if input == "clear" || input == "remove all" || input == "remove all pokemon" || input == "[clear]"
-               Team.all.clear
+               Team.all.first.pokemons.each {|poke| poke.team = nil}
                team_comment
           elsif input == "last" || input == "remove" || input == "undo" || input == "[remove]"
-               Team.all.pop
+               # pokemon = Team.all.first.pokemons.detect {|poke| poke.number == }
+                #pokemon.team = nil
+                pokemon_log.last.team = nil
+                pokemon_log.pop
                puts "         You have removed a POKEMON from your team. "
                team_list
           else
@@ -212,7 +220,7 @@ class CLI
           list_options
       end
       def leaving
-          if Team.all.length > 0
+          if Team.all.first.pokemons.length > 0
                retrieve_team_names
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
@@ -230,7 +238,7 @@ class CLI
           line
      end
      def team_comment
-         team = Team.all.length
+         team = Team.all.first.pokemons.length
          if team == 0
                puts "            It looks like you have no POKEMON on your team!"
                puts "              View a POKEMON to add it to your roster!"
