@@ -1,5 +1,4 @@
 class API
-    #list
     def self.get_pokemon_list
         url = "https://pokeapi.co/api/v2/pokemon?limit=151" 
         uri = URI.parse(url) 
@@ -13,7 +12,6 @@ class API
         end
     end
 
-    #description
     def self.pokemon_description(number)
         pokemon = Pokemon.find_by_number(number)
         url = "https://pokeapi.co/api/v2/pokemon-species/#{number}" 
@@ -25,7 +23,6 @@ class API
         pokemon
      end
 
-    #stat
     def self.select_stats(url)
         uri = URI.parse(url) 
         response = Net::HTTP.get_response(uri) 

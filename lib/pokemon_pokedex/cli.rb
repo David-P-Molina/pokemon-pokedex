@@ -60,6 +60,7 @@ class CLI
          puts ""
     end
     def ready_or_not
+         puts ""
          puts "                 #{name} Are you ready to begin? [yes or no]".bold
          
           input = gets.chomp.downcase
