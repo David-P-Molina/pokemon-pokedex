@@ -10,21 +10,21 @@ class CLI
         ready_or_not
      end
      def poke_logo #Source https://ascii.co.uk/art/pokemon
-         puts "╔══════════════════════════════════════════════════════════════════════╗"
-         puts "║                                        .::.                          ║"
-         puts "║                                      .;:**'                          ║"           
-         puts "║                             .                                        ║"
-         puts "║      .:XHHHHk.              db.   .;;.     dH  MX                    ║"
-         puts "║    oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN         ║"
-         puts "║   'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM    ║" 
-         puts "║      `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP    ║"
-         puts "║       'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM     ║"
-         puts "║        ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP     ║" 
-         puts "║         ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM      ║"
-         puts "║          MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP      ║"
-         puts "║          'MMM.         The Original 151 Pokemon            IMX       ║"
-         puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║"
-         puts "╚══════════════════════════════════════════════════════════════════════╝"
+         puts "╔══════════════════════════════════════════════════════════════════════╗".colorize(:yellow)
+         puts "║                                        .::.                          ║".colorize(:yellow)
+         puts "║                                      .;:**'                          ║".colorize(:yellow)     
+         puts "║                             .                                        ║".colorize(:yellow)
+         puts "║      .:XHHHHk.              db.   .;;.     dH  MX                    ║".colorize(:yellow)
+         puts "║    oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN         ║".colorize(:yellow)
+         puts "║   'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM    ║".colorize(:yellow)
+         puts "║      `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP    ║".colorize(:yellow)
+         puts "║       'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM     ║".colorize(:yellow)
+         puts "║        ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP     ║".colorize(:yellow) 
+         puts "║         ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM      ║".colorize(:yellow)
+         puts "║          MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP      ║".colorize(:yellow)
+         puts "║          'MMM.         The Original 151 Pokemon            IMX       ║".colorize(:yellow)
+         puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║".colorize(:yellow)
+         puts "╚══════════════════════════════════════════════════════════════════════╝".colorize(:yellow)
      end
      def line
          puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"

@@ -3,20 +3,20 @@ class Pokemon
     @@all = []
     attr_accessor :name, :url, :number, :description, :height, :weight, :type, :hp, :attack, :defense, :spc_attack, :spc_defense, :speed, :team
     def initialize(name, url, number = nil, description = nil, height = nil, weight = nil, type = nil, hp = nil, attacl =nil, defense = nil, spc_attack = nil, spc_defense = nil, speed = nil, team = nil)
-        @name = name
-        @url = url
-        @number = @@all.length + 1
-        @description = description
-        @height = height
-        @weight = weight
-        @type = type
-        @hp = hp
-        @attack = attack
-        @defense = defense
-        @spc_attack = spc_attack
-        @spc_defense = spc_defense
-        @speed = speed
-        @team = team
+        self.name = name
+        self.url = url
+        self.number = @@all.length + 1
+        self.description = description
+        self.height = height
+        self.weight = weight
+        self.type = type
+        self.hp = hp
+        self.attack = attack
+        self.defense = defense
+        self.spc_attack = spc_attack
+        self.spc_defense = spc_defense
+        self.speed = speed
+        self.team = team
         save
     end
     def save
