@@ -10,29 +10,31 @@ class CLI
         ready_or_not
      end
      def poke_logo #Source https://ascii.co.uk/art/pokemon
-         puts "╔══════════════════════════════════════════════════════════════════════╗".colorize(:yellow)
-         puts "║                                        .::.                          ║".colorize(:yellow)
-         puts "║                                      .;:**'                          ║".colorize(:yellow)     
-         puts "║                             .                                        ║".colorize(:yellow)
-         puts "║      .:XHHHHk.              db.   .;;.     dH  MX                    ║".colorize(:yellow)
-         puts "║    oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN         ║".colorize(:yellow)
-         puts "║   'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM    ║".colorize(:yellow)
-         puts "║      `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP    ║".colorize(:yellow)
-         puts "║       'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM     ║".colorize(:yellow)
-         puts "║        ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP     ║".colorize(:yellow) 
-         puts "║         ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM      ║".colorize(:yellow)
-         puts "║          MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP      ║".colorize(:yellow)
-         puts "║          'MMM.         The Original 151 Pokemon            IMX       ║".colorize(:yellow)
-         puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║".colorize(:yellow)
-         puts "╚══════════════════════════════════════════════════════════════════════╝".colorize(:yellow)
+         puts "╔══════════════════════════════════════════════════════════════════════╗".yellow.on_blue
+         puts "║                                        .::.                          ║".yellow.on_blue
+         puts "║                                      .;:**'                          ║".yellow.on_blue
+         puts "║                             .                                        ║".yellow.on_blue
+         puts "║      .:XHHHHk.              db.   .;;.     dH  MX                    ║".yellow.on_blue
+         puts "║    oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN         ║".yellow.on_blue
+         puts "║   'QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM    ║".yellow.on_blue
+         puts "║      `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP    ║".yellow.on_blue
+         puts "║       'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `''MX MMXXMM     ║".yellow.on_blue
+         puts "║        ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP     ║".yellow.on_blue 
+         puts "║         ?MMM>  YMMMMMM! MM   `?MMRb.    `'''   !L'MMMMM XM IMMM      ║".yellow.on_blue
+         puts "║          MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP      ║".yellow.on_blue
+         puts "║          'MMM.         The Original 151 Pokemon            IMX       ║".yellow.on_blue
+         puts "║           ~M!M         ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀            IMP    ©  ║".yellow.on_blue
+         puts "╚══════════════════════════════════════════════════════════════════════╝".yellow.on_blue
      end
      def line
-         puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:"
+         puts "<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:>:<:><:>:<:><:><:>".yellow.on_blue
      end
      def line_team
-         puts " _-_+_-_+_-_+_-_+_-_+_-_+_-_+_-_+_-_"
+         puts " _-_+_-_+_-_+_-_+_-_+_-_+_-_+_-_+_".yellow
+         puts ""
      end
      def user_greeting
+     puts ""
          puts "                             Hello there!"
          puts "             Welcome to the KANTO POKEDEX & Team Builder!"
          puts "       Yes you can pick up to 6 pokemon to help you on your journey!"
@@ -47,15 +49,19 @@ class CLI
           @pokemon_log = []
      end
      def user_name
+         puts ""
          puts "                       First, what is your name?"
-         @name = gets.chomp.upcase
+         @name = gets.chomp.upcase.bold
          line
+         puts ""
          puts "                     Right! so your name is #{name}!"
          puts "         #{name} Your very own POKEMON legend is about to unfold!"
          puts "       A world of dreams and adventures with POKEMON awaits! Let's go!"
+         puts ""
     end
     def ready_or_not
-         puts "                 #{name} Are you ready to begin? [yes or no]"
+         puts "                 #{name} Are you ready to begin? [yes or no]".bold
+         
           input = gets.chomp.downcase
           if input == "yes" || input == "y" || input == "[yes]" || input == "[y]"
                pokedex_list
@@ -113,9 +119,9 @@ class CLI
      end
      #Input Options
      def list_options
-          puts "              To view a POKEMON type their POKEDEX number"
-          puts "                 To see a shorter list type [short]"
-          puts "                   To view your team type [team]"
+          puts "              To view a POKEMON type their POKEDEX number".bold
+          puts "                 To see a shorter list type [short]".bold
+          puts "                   To view your team type [team]".bold
           input = gets.chomp.downcase
           if input == "[short]" || input == "short list" || input == "shorterlist" || input == "shorter list"|| input == "short" || input == "list" || input == "shorter"
                short_pokedex_list 
@@ -124,17 +130,17 @@ class CLI
           end
      end
      def short_list_options
-          puts "                               -All- Next-->" if count.between?(0,39)
-          puts "                   <--Previous -All- Next-->" if count.between?(40,119)
-          puts "                   <--Previous -All-" if count.between?(120,151)
-          puts "             To view a POKEMON type their POKEDEX number"
-          puts "                  To view your team type [team]"
-          puts "                To navigate [previous, next or all]"
+          puts "                               -All- Next-->".bold if count.between?(0,39)
+          puts "                   <--Previous -All- Next-->".bold if count.between?(40,119)
+          puts "                   <--Previous -All-".bold if count.between?(120,151)
+          puts "             To view a POKEMON type their POKEDEX number".bold
+          puts "                  To view your team type [team]".bold
+          puts "                To navigate [previous], [next] or [all]".bold
           input = gets.chomp.downcase
-          if input == "next" && self.count < 119 
+          if input == "next" && self.count < 119  || input == "[next]" && self.count < 119 
                self.count += 40 
                short_pokedex_list
-          elsif input == "previous" && self.count > 39 
+          elsif input == "previous" && self.count > 39 || input == "[previous]" && self.count > 39 
                self.count -= 40
                short_pokedex_list
           else
@@ -149,7 +155,7 @@ class CLI
                future_pokemon
           elsif input == "exit" || input == "exit!"|| input == "[exit]"
                leaving
-          elsif input == "pokedex" || input == "poke dex" || input == "all"
+          elsif input == "pokedex" || input == "[all]" || input == "all"
                pokedex_list
           elsif input == "roster" || input == "team" || input == "[team]" 
                team_list
@@ -164,7 +170,7 @@ class CLI
      def team_limiter_and_adder
          team = Team.all.first.pokemons.length
          if team == 6
-               puts "           It looks like you already have 6 POKEMON"
+               puts "           It looks like you already have 6 POKEMON".bold
                puts "          POKEMON info has been added to the POKEDEX"
                puts "          This POKEMON has been transferred to Box 1"
                line
@@ -176,15 +182,15 @@ class CLI
                puts "          POKEMON info has been added to the POKEDEX"
                puts "           #{name} This pokemon has been added to your team"
                line
-               puts " Current Team:"
+               puts " Current Team:".yellow.on_blue.bold
                team_list
                pokemon_display_options
          end
      end
      def pokemon_display_options
-          puts "             To add this POKEMON to your team type [add]"
-          puts "                    To view your team type [team]"
-          puts "           To look at other POKEMON type [all] or [shorterlist]"
+          puts "             To add this POKEMON to your team type [add]".bold
+          puts "                    To view your team type [team]".bold
+          puts "           To look at other POKEMON type [all] or [shorterlist]".bold
           input = gets.chomp.downcase
           if input == "add" || input == "+" || input == "[add]" || input == "yes" 
                team_limiter_and_adder
@@ -193,10 +199,10 @@ class CLI
           end
      end
      def team_display_options
-          puts "               Need to reset your entire team? Type [clear]"
-          puts "              Or to remove last pokemon added type [remove]"
-          puts "           To look at other POKEMON type [all] or [shortlist]"
-          puts "                    To start your journey type exit. "
+          puts "               Need to reset your entire team? Type [clear]".bold
+          puts "              Or to remove last pokemon added type [remove]".bold
+          puts "           To look at other POKEMON type [all] or [shortlist]".bold
+          puts "                    To start your journey type [exit]. ".bold
           input = gets.chomp.downcase
           if input == "clear" || input == "remove all" || input == "remove all pokemon" || input == "[clear]"
                Team.all.first.pokemons.each {|poke| poke.team = nil}
@@ -204,7 +210,7 @@ class CLI
           elsif input == "last" || input == "remove" || input == "undo" || input == "[remove]"
                 pokemon_log.last.team = nil
                 pokemon_log.pop
-               puts "         You have removed a POKEMON from your team. "
+               puts "         You have removed a POKEMON from your team. ".colorize(:red)
                team_list
           else
                general_inputs(input)
@@ -213,8 +219,8 @@ class CLI
      end
      #additional messages
       def future_pokemon
-          puts "               Woah it looks like you are looking!"
-          puts "           for a Pokemon that has yet to be discovered!"
+          puts "               Woah it looks like you are looking".colorize(:red)
+          puts "           for a Pokemon that has yet to be discovered!".colorize(:red)
           line
           list_options
       end
@@ -223,7 +229,7 @@ class CLI
                retrieve_team_names
                puts"               #{name}, You are ready to face any obstacle! "
                puts"      Now embark on your journey with your Pokemon by your side!"
-               puts"   Presenting your Dream Team!═══>    #{retrieve_team_names.join("  ")}"
+               puts"   Presenting your Dream Team!═══>    #{retrieve_team_names.join("  ")}".yellow.on_blue
                puts ""
                line
                exit 
@@ -234,22 +240,22 @@ class CLI
           end
       end
       def invalid_input
-          puts "           You remind me of my grandson... I forget his name."
-          puts "         He was always fooling around too! Lets try one more time!"  
+          puts "           You remind me of my grandson... I forget his name.".colorize(:red)
+          puts "         He was always fooling around too! Lets try one more time!".colorize(:red)
           line
      end
      def team_comment
          team = Team.all.first.pokemons.length
          if team == 0
-               puts "            It looks like you have no POKEMON on your team!"
-               puts "              View a POKEMON to add it to your roster!"
+               puts "            It looks like you have no POKEMON on your team!".colorize(:red)
+               puts "                View a POKEMON to add it to your roster!"
                ready_or_not
          elsif team.between?(1,5)
                empty = 6 - team
                puts "               You need #{empty} POKEMON to complete your team!"
                team_display_options
          elsif team == 6
-               puts "                       All your spots are filled! "
+               puts "                       All your spots are filled! ".colorize(:red)
                puts ""
                team_display_options
           else
@@ -259,24 +265,24 @@ class CLI
      #display options
      def pokedex_display_card(pokemon)
           puts ""
-          puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  "
-          puts "  ╚═TYPE:#{pokemon.type.capitalize}"
-          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════>"
-          puts "    DESCRIPTION:  #{pokemon.description}."
-          puts "  ╚═════════════"
-          puts "  ╚═>HP: #{pokemon.hp}  SPEED: #{pokemon.speed}  ATTACK: #{pokemon.attack}  SPC. ATTACK #{pokemon.spc_attack}"
-          puts "  ╚═>DEFENSE:#{pokemon.defense}  SPC. DEFENSE #{pokemon.spc_defense}  HT: #{pokemon.height}   WT: #{pokemon.weight}"
+          puts "  ╚═POKEDEX ##{pokemon.number}| #{pokemon.name.capitalize}  ".yellow
+          puts "  ╚═TYPE:#{pokemon.type.capitalize}".yellow
+          puts "  ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════>".yellow
+          puts "    DESCRIPTION: #{pokemon.description}.".yellow
+          puts "  ╚═════════════".yellow
+          puts "  ╚═>HP: #{pokemon.hp}  SPEED: #{pokemon.speed}  ATTACK: #{pokemon.attack}  SPC. ATTACK #{pokemon.spc_attack}".yellow
+          puts "  ╚═>DEFENSE:#{pokemon.defense}  SPC. DEFENSE #{pokemon.spc_defense}  HT: #{pokemon.height}   WT: #{pokemon.weight}".yellow
           puts " "
      end
      def display_team_member(pokemon)
-        puts ""
-        puts " ╚═># #{pokemon.number}| #{pokemon.name.capitalize}"
-        puts "   HT: #{pokemon.height}   WT: #{pokemon.weight}"
-        puts " ╚═════════════════════════════╗"
-        puts " ╚═>TYPE:#{pokemon.type.capitalize}|"
-        puts " ╚═════════════════════════════╗"
-        puts "  SPD: #{pokemon.speed}| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|"
-        puts "  DEF: #{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}| HP: #{pokemon.hp}"
+        puts "".yellow.on_blue
+        puts " ╚═># #{pokemon.number}| #{pokemon.name.capitalize}".yellow
+        puts "   HT: #{pokemon.height}   WT: #{pokemon.weight}".yellow
+        puts " ╚═════════════════════════════╗".yellow
+        puts " ╚═>TYPE:#{pokemon.type.capitalize}|".yellow
+        puts " ╚═════════════════════════════╗".yellow
+        puts "  SPD: #{pokemon.speed}| ATK: #{pokemon.attack}| SPC. ATK #{pokemon.spc_attack}|".yellow
+        puts "  DEF: #{pokemon.defense}| SPC. DEF #{pokemon.spc_defense}| HP: #{pokemon.hp}".yellow
         line_team
     end
 end
