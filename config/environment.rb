@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require "pry"
 require "open-uri"
 require "net/http"

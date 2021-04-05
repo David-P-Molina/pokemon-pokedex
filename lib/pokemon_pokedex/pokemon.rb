@@ -19,15 +19,18 @@ class Pokemon
         self.team = team
         save
     end
+    def self.find_all_type(type)
+        all.select{|poke| poke.type == type}
+    end
     def save
         self.class.all << self
     end
     def self.all 
         @@all
     end
-    def self.clear
-        self.class.all.clear 
-    end
+    # def self.clear
+    #     self.class.all.clear 
+    # end
     def self.create(name, url)
         pokemon = new(name, url)
         pokemon.number = @@all.length + 1

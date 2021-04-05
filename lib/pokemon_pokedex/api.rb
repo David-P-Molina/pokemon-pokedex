@@ -7,7 +7,7 @@ class API
     end
     def self.pokemon_roster
         pokemon_list = JSON.parse(self.get_pokemon_list)
-        pokemon_list['results'].collect do |hash|
+        pokemon_list['results'].each do |hash|
             Pokemon.new(hash["name"], hash["url"])
         end
     end

@@ -191,7 +191,7 @@ class CLI
      def pokemon_display_options
           puts "             To add this POKEMON to your team type [add]".bold
           puts "                    To view your team type [team]".bold
-          puts "           To look at other POKEMON type [all] or [shorterlist]".bold
+          puts "           To look at the POKEDEX type [all] or [short]".bold
           input = gets.chomp.downcase
           if input == "add" || input == "+" || input == "[add]" || input == "yes" 
                team_limiter_and_adder
